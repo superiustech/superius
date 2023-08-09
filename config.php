@@ -37,5 +37,22 @@ function selecionadoMenu($par){
     }
 }
 
+function verificaPermissaoMenu($permissao){
+    if($_SESSION['cargo'] >= $permissao){
+        return;
+    }else{
+        echo 'style="display:none;"';
+    }
+}
+
+function verificaPermissaoPagina($permissao){
+    if($_SESSION['cargo'] >= $permissao){
+        return;
+    }else{
+        include('painel/pages/permissao_negada.php');
+        die();
+    }
+}
+
 
 ?>
