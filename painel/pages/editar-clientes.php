@@ -89,6 +89,30 @@ else{
 </div>
 
 <form method="post">
+
+<?php
+if(isset($_POST['acao'])){
+    $nome = $_POST['nome_pagto'];
+    // $valor  = str_replace('.', '' ,$_POST['valor']);
+    // $valor = str_replace(',' , '.',$valor );
+    $valor = $_POST['valor'];
+    $cliente_id = $id;
+    $vencimento = $_POST['vencimento'];
+    $numero_parcelas = $_POST['parcelas'];  
+    $intervalo = $_POST['intervalo']; 
+    $status = 0;
+    $vencimento_original = $_POST['vencimento'];
+    for ($i=0; $i < $numero_parcelas; $i++) { 
+        $vencimento = strtotime($vencimento_original) + (($i* $intervalo) * (60*60*24));
+        Painel::inserirPagamento($cliente_id,$valor,date('Y-m-d',$vencimento),$nome,$status);
+
+    }
+    Painel::alert('sucesso', 'Os pagamentos foram inseridos com sucesso!');
+
+}
+ ?>
+
+
 <div class="form-group">
         <label>Nome do pagamento: </label>
         <input type="text" name="nome_pagto">
@@ -101,7 +125,10 @@ else{
         <label>N° Parcelas: </label>
         <input type="text" name="parcelas">
     </div>
-    
+    <div class="form-group">
+        <label>Intervalo: </label>
+        <input type="text" name="intervalo">
+    </div>
     <div class="form-group">
     <div class="date-wrapper">
         <label>Vencimento: </label>

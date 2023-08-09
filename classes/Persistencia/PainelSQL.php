@@ -63,6 +63,9 @@ class PainelSQL{
     public static function carregarUsuarios(){
         return "SELECT * FROM USUARIOS_ADMIM";
     }
+    public static function inserirPagamento(){
+        return "INSERT INTO CONTROLE_FINANCEIRO VALUES (null, ?,?,?,?,?)";
+    }
 }
 
 ?>

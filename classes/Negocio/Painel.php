@@ -183,6 +183,14 @@ class Painel
 		$sql->execute();
 		return $sql->fetchAll();
 	}
+	public static function inserirPagamento($cliente_id,$valor,$vencimento,$nome,$status){
+		$sql = MySql::conectar()->prepare(PainelSQL::inserirPagamento());
+		if($sql->execute(array($cliente_id,$valor,$vencimento,$nome,$status)) == true)
+			return true;
+		else
+			return false;
+		
+	}
 	
 }
 
