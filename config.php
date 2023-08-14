@@ -1,7 +1,7 @@
 <?php
 session_start();
 date_default_timezone_set('America/Sao_Paulo');
-define('INCLUDE_PATH','http://localhost/superius/superius/');
+define('INCLUDE_PATH','http://localhost/superius/');
 define('INCLUDE_PATH_PAINEL',INCLUDE_PATH.'painel/');
 define('BASE_DIR_PAINEL',__DIR__.'/painel');
 define('HORARIO_ATUAL', date('Y-m-d H:i:s'));
