@@ -37,11 +37,10 @@
             header('Location: ' . INCLUDE_PATH_PAINEL);
             die();
         } else {
-            // login falhou
-            echo '<div class="msgErro"> Usuário ou senha incorretos. </div>';
-        }
+            // login falhou        }
         
     }
+}
     
     ?>
 <div class="container-login">

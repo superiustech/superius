@@ -102,16 +102,31 @@ if(isset($_POST['acao'])){
     $intervalo = $_POST['intervalo']; 
     $status = 0;
     $vencimento_original = $_POST['vencimento'];
-    for ($i=0; $i < $numero_parcelas; $i++) { 
-        $vencimento = strtotime($vencimento_original) + (($i* $intervalo) * (60*60*24));
-        Painel::inserirPagamento($cliente_id,$valor,date('Y-m-d',$vencimento),$nome,$status);
 
+    if(strtotime($vencimento_original) < strtotime(date('Y-m-d'))){
+        Painel::alert('erro', "Você selecionou uma data menor do que a atual.");
+    }else if($valor == ''){
+        Painel::alert('erro', "Insira um valor!");
     }
-    Painel::alert('sucesso', 'Os pagamentos foram inseridos com sucesso!');
-
+    else if($numero_parcelas == ''){
+        Painel::alert('erro', "Entre com o número de parcelas!");
+    }else if ($intervalo == ''){
+        Painel::alert('erro', "Selecione um intervalo!");
+    }   else{
+        for ($i=0; $i < $numero_parcelas; $i++) { 
+            $vencimento = strtotime($vencimento_original) + (($i* $intervalo) * (60*60*24));
+            Painel::inserirPagamento($cliente_id,$valor,date('Y-m-d',$vencimento),$nome,$status);
+    
+        }
+        Painel::alert('sucesso', 'Os pagamentos foram inseridos com sucesso!');
+    }   
 }
- ?>
 
+
+
+ ?>
+ 
+<form method="post">
 
 <div class="form-group">
         <label>Nome do pagamento: </label>
@@ -135,9 +150,7 @@ if(isset($_POST['acao'])){
         <input type="text" name="vencimento">
         </div>
     </div>
- 
-
-<div class="form-group">
+    <div class="form-group">
         <input type="submit" name="acao" value="Inserir Pagamentos!">
     </div>
 
@@ -152,37 +165,108 @@ if(isset($_POST['acao'])){
     <h3>Pagamentos pendentes- <?php echo NOME_EMPRESA ?></h3> 
 </div>
 
+<?php     if (isset($_GET['pago'])){
+        $nCdControleFinanceiro = $_GET['pago'];
+        // $dataAtual = date("Y-m-d");
+        if (Painel::atualizarStatusFinanceiro($nCdControleFinanceiro) == true){
+            Painel::alert('sucesso', ' O pagamento foi quitado com sucesso!');
+        }else{
+            Painel::alert('erro', 'Houve algum erro no processamento!');
+        }
+    }
+    
+?>
+
+
 <div class="wrapper">
-    <table>
+    <table class="table-header">
         <tr>
             <td>Nome do pagamento</td>
             <td>Cliente</td>
             <td>Valor</td>
             <td>Venciemento</td>
-            <td>#</td>
+            <td>Enviar e-mail</td>
+            <td>Marcar como pago</td>
         </tr>
     </table>
 </div>
 
+<?php 
+$cliente_id = $id;
+$status = 0;
+$pendentes = Painel::retornaFinanceiroCliente($cliente_id,$status);
+foreach ($pendentes as $value) { 
+    
+$style = "";
+if(strtotime(date('Y-m-d')) >= strtotime($value['tDtVencimento'])){
+    $style = 'style="background-color: #ff2b2b;"';
+} ?>
+
+<div class="wrapper">
+    <table >
+        <tr <?php echo $style;?>>
+            <td> <?php echo $value['sNmControle']; ?></td>
+            <td><?php echo $value['sDsApelido']; ?></td>
+            <td><?php echo $value['sDsValor']; ?></td>
+            <td><?php echo date('d/m/Y',strtotime($value['tDtVencimento'])); ?></td>
+            <td><a style="background-color: orange;" class="btn"   href="<?php echo INCLUDE_PATH_PAINEL?>"><i class="fa fa-envelope"></i> E-mail</a></td>
+            <td><a style="background-color: #00bfa5;" class="btn"   href="<?php echo INCLUDE_PATH_PAINEL?>editar-clientes?id=<?php echo $value['nCdCliente']?> &pago=<?php echo $value['nCdControleFinanceiro']?>"><i class="fa-solid fa-check"></i> Pago</a></td>
+        </tr>
+    </table>
+</div>
+
+<?php } ?> 
+
 </div>
 
 <div class="box-content w100">
+
+
 
 <div class="title-content">
     <i class="fa-solid fa-pencil" style="color: #1f71ff;"></i>
     <h3>Pagamentos concluídos - <?php echo NOME_EMPRESA ?></h3> 
 </div>
 
+
 <div class="wrapper">
-    <table>
+    <table class="table-header">
         <tr>
             <td>Nome do pagamento</td>
             <td>Cliente</td>
             <td>Valor</td>
-            <td>Venciemento</td>
+            <td>Vencimento</td>
+            <td>Pagamento</td>
         </tr>
     </table>
 </div>
+
+<?php 
+$cliente_id = $id;
+$status = 1;
+$pendentes = Painel::retornaFinanceiroCliente($cliente_id,$status);
+foreach ($pendentes as $value) { 
+    
+$style = "";
+if(strtotime(date('Y-m-d')) >= strtotime($value['tDtVencimento'])){
+    $style = 'style="background-color: #ff2b2b;"';
+} ?>
+
+<div class="wrapper">
+    <table>
+        <tr>
+            <td> <?php echo $value['sNmControle']; ?></td>
+            <td><?php echo $value['sDsApelido']; ?></td>
+            <td><?php echo $value['sDsValor']; ?></td>
+            <td><?php echo date('d/m/Y',strtotime($value['tDtVencimento'])); ?></td>
+            <td><?php echo "EM IMPLEMENTAÇÃO"; ?></td>
+         </tr>
+    </table>
+</div>
+
+<?php } ?> 
+
+
 
 </div>
 

@@ -175,7 +175,6 @@ header .center {
 .boxItem{
 
   padding: 30px;
-  background-color: #F0F1F3;
   font-size: 20px;
   font-weight: 300;
   display: flex;
@@ -329,7 +328,8 @@ select{
     gap: 10px;
 
 }
-.boxes .btn{
+.btn{
+    color: white;
     padding: 5px;
     background-color: gray;
     font-size: 12px;
@@ -337,6 +337,12 @@ select{
     padding: 10px;
     border-radius: 30px;
 
+}
+.pdf{
+  font-size: 14px;
+  font-weight: bold;
+  text-align: center;
+  background-color: rgb(251, 49, 49);
 }
 .boxes .delete{
     background-color: #f20000;
@@ -424,12 +430,26 @@ select{
 }
 /* CONTROLE-FINANCEIRO */
 
-table{
+.table-header{
   margin-top: 28px;
   color: white;
   width: 100%;
   background-color: #0658F6;
   padding: 10px;
+}
+
+table td{
+  width: 100%;
+}
+table tr{
+  display: flex;
+  padding: 10px;
+
+}
+table{
+  color: white;
+  width: 100%;
+  background-color: #5e5e5e;
 }
 
 /*MEDIA QUERY*/
