@@ -5,17 +5,58 @@
     <h3>Pagamentos pendentes - <?php echo NOME_EMPRESA ?></h3> 
 </div>
 
+
+<?php     if (isset($_GET['pago'])){
+        $nCdControleFinanceiro = $_GET['pago'];
+        // $dataAtual = date("Y-m-d");
+        if (Painel::atualizarStatusFinanceiro($nCdControleFinanceiro) == true){
+            Painel::alert('sucesso', ' O pagamento foi quitado com sucesso!');
+        }else{
+            Painel::alert('erro', 'Houve algum erro no processamento!');
+        }
+    }
+    
+?>
+<div class="gerar-pdf" style="margin: 20px 20px;"><a target="blank" class="btn pdf" href="<?php echo INCLUDE_PATH_PAINEL ?>gerar-pdf.php?pagamentos=pendentes"pa><i class="fa fa-envelope"></i>  Gerar PDF</a></div>
+
+
 <div class="wrapper">
-    <table>
+    <table class="table-header">
         <tr>
             <td>Nome do pagamento</td>
             <td>Cliente</td>
             <td>Valor</td>
             <td>Venciemento</td>
-            <td>#</td>
+            <td>Enviar e-mail</td>
+            <td>Marcar como pago</td>
         </tr>
     </table>
 </div>
+
+<?php 
+
+$status = 0;
+$pendentes = Painel::retornaTodoFinanceiro($status);
+foreach ($pendentes as $value) {    
+$style = "";
+if(strtotime(date('Y-m-d')) >= strtotime($value['tDtVencimento'])){
+    $style = 'style="background-color: #ff2b2b;"';
+} ?>
+
+<div class="wrapper">
+    <table>
+        <tr <?php echo $style;?>>
+            <td> <?php echo $value['sNmControle']; ?></td>
+            <td><?php echo $value['sDsApelido']; ?></td>
+            <td><?php echo $value['sDsValor']; ?></td>
+            <td><?php echo date('d/m/Y',strtotime($value['tDtVencimento'])); ?></td>
+            <td><a style="background-color: orange;" class="btn"   href="<?php echo INCLUDE_PATH_PAINEL?>"><i class="fa fa-envelope"></i> E-mail</a></td>
+            <td><a style="background-color: #00bfa5;" class="btn"   href="<?php echo INCLUDE_PATH_PAINEL?>visualizar-pagamentos?id=<?php echo $value['nCdCliente']?> &pago=<?php echo $value['nCdControleFinanceiro']?>"><i class="fa-solid fa-check"></i> Pago</a></td>
+        </tr>
+    </table>
+</div>
+
+<?php } ?> 
 
 </div>
 
@@ -23,11 +64,12 @@
 
 <div class="title-content">
     <i class="fa-solid fa-pencil" style="color: #1f71ff;"></i>
-    <h3>Pagamentos concluídos - <?php echo NOME_EMPRESA ?></h3> 
+    <h3>Pagamentos pendentes - <?php echo NOME_EMPRESA ?></h3> 
 </div>
+<div class="gerar-pdf" style="margin: 20px 20px;"><a target="blank" class="btn pdf" href="<?php echo INCLUDE_PATH_PAINEL ?>gerar-pdf.php?pagamentos=concluidos"><i class="fa fa-envelope"></i>  Gerar PDF</a></div>
 
 <div class="wrapper">
-    <table>
+    <table class="table-header">
         <tr>
             <td>Nome do pagamento</td>
             <td>Cliente</td>
@@ -37,4 +79,32 @@
     </table>
 </div>
 
+<?php 
+
+$status = 1;
+$pendentes = Painel::retornaTodoFinanceiro($status);
+foreach ($pendentes as $value) {    
+if(strtotime(date('Y-m-d')) >= strtotime($value['tDtVencimento'])){
+    $style = 'style="background-color: #ff2b2b;"';
+} ?>
+
+<div class="wrapper">
+    <table>
+        <tr>
+            <td> <?php echo $value['sNmControle']; ?></td>
+            <td><?php echo $value['sDsApelido']; ?></td>
+            <td><?php echo $value['sDsValor']; ?></td>
+            <td><?php echo date('d/m/Y',strtotime($value['tDtVencimento'])); ?></td>
+         </tr>
+    </table>
 </div>
+
+<?php } ?> 
+
+</div>
+
+</div>
+
+
+</div>
+

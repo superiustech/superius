@@ -191,6 +191,23 @@ class Painel
 			return false;
 		
 	}
+	public static function retornaFinanceiroCliente($cliente_id, $bFlStatus){
+	$sql = MySql::conectar()->prepare(PainelSQL::retornaFinanceiroCliente());
+	$sql->execute(array($cliente_id, $bFlStatus));
+	return $sql->fetchAll();	
+	}
+	public static function retornaTodoFinanceiro($bFlStatus){
+		$sql = MySql::conectar()->prepare(PainelSQL::retornaTodoFinanceiro());
+		$sql->execute(array($bFlStatus));
+		return $sql->fetchAll();	
+		}
+	public static function atualizarStatusFinanceiro($nCdControleFinanceiro){
+		$sql = MySql::conectar()->prepare(PainelSQL::atualizarStatusFinanceiro());
+		if($sql->execute(array($nCdControleFinanceiro)) == true)
+			return true;
+		else
+			return false;
+	}
 	
 }
 

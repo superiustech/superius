@@ -37,23 +37,45 @@
             header('Location: ' . INCLUDE_PATH_PAINEL);
             die();
         } else {
-            // login falhou
-            echo '<div class="msgErro"> Usuário ou senha incorretos. </div>';
-        }
+            // login falhou        }
         
     }
+}
     
     ?>
-    <div class="login-div">
+<div class="container-login">
+    <div class="img-box">
+            <img src="uploads/logo.png">
+    </div>
+    <div class="content-box">
+    <div class="form-box">
+    <h2>Login</h2>
+    <form method="post" class="form">
 
-        <form method="post" class="form">
-            <h2>EFETUE O LOGIN!</h2>
+        <div class="input-box">
+            <span>Username</span>
             <input type="text" name="adminName" placeholder="Nome...">
+        </div>
+        <div class="input-box">
+            <span>Password</span>
             <input type="password" name="adminPassword" placeholder="Senha...">
-            <input type="submit" value="Entrar!" name="acao">
-        </form><!-- form -->
-    </div><!-- login-div -->
+        </div>
+        <div  class="remember">
+            <label>
+                <input type="checkbox" value=""> Lembrar me
+            </label>
+            <a href="#">Esqueceu a Senha?</a>
+        </div>
+        <div class="input-box">
+        <input type="submit" value="Entrar!" name="acao">
+        </div>
+        <div class="input-box">
+            <p>Não Tem Uma Conta?<a href="#">Inscrever-se?</a></p>
+        </div>
 
-    </div><!-- large box -->
+    </form>
+</body>
+</html>
+
 </body>
 </html>

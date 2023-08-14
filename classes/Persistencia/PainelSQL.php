@@ -64,7 +64,23 @@ class PainelSQL{
         return "SELECT * FROM USUARIOS_ADMIM";
     }
     public static function inserirPagamento(){
-        return "INSERT INTO CONTROLE_FINANCEIRO VALUES (null, ?,?,?,?,?)";
+        return "INSERT INTO CONTROLE_FINANCEIRO VALUES (null, ?,?,?,?,?,null)";
+    }
+
+    public static function retornaFinanceiroCliente(){
+        return "SELECT * FROM CONTROLE_FINANCEIRO CF 
+        INNER JOIN CLIENTES CL ON CL.nCdCliente = CF.nCdCliente
+        WHERE CF.nCdCliente = ? AND CF.bFlStatus = ? 
+        ORDER BY CF.tDtVencimento ASC";
+    }
+    public static function retornaTodoFinanceiro(){
+        return "SELECT * FROM CONTROLE_FINANCEIRO CF 
+        INNER JOIN CLIENTES CL ON CL.nCdCliente = CF.nCdCliente
+        WHERE CF.bFlStatus = ? 
+        ORDER BY CF.tDtVencimento ASC";
+    }
+    public static function atualizarStatusFinanceiro(){
+        return "UPDATE CONTROLE_FINANCEIRO SET bFlStatus = 1 WHERE nCdControleFinanceiro = ?";
     }
 }
 
