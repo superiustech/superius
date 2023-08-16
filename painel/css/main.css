@@ -254,6 +254,30 @@ header .center {
   border-radius: 10px;
   border: 0;
 }
+input{
+  padding: 10px;
+  outline: 0;
+  transition: 0.3s;
+  border: 1px solid #CCc;
+}
+input[type=submit]{
+  width: 100px;
+  padding: 10px;
+  background-color:#1f71ff;
+  color: white;
+  border-radius: 20px;
+  border: 0;
+}
+#boxes-form{
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  gap: 5px;
+  margin-bottom: 10px;
+}
+.boxes .boxes-topo img{
+  width: 100%;
+}
 .form-group label{
   font-weight: normal;
   margin-left: 10px;
@@ -303,13 +327,24 @@ select{
   padding: 10px;
   background-color: #74C0FC;
   border-radius: 30px;
-
 }
+
 .boxes-tipo{
     display: flex;
     font-size: 15px;
-    gap: 5px;
-    
+    gap: 30px;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+#boxes-produtos{
+  display: flex ;
+  flex-direction: row;
+  width: 100%;
+  max-width: 500px;
+  padding: 10px;
+  background-color: #74C0FC;
+  border-radius: 30px;
 }
 .boxes-tipo p{
     font-size: 13px;
@@ -321,7 +356,6 @@ select{
     justify-content: center ;
     padding: 10px;
     border-radius: 20px;
-    background-color: white;
 }
 .boxes-btn{
     display: flex;
