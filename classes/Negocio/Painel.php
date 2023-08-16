@@ -208,6 +208,18 @@ class Painel
 		else
 			return false;
 	}
+	public static function retornaEstoqueCompleto (){
+		$sql = MySql::conectar()->prepare(PainelSQL::retornaEstoqueCompleto());
+		$sql->execute();
+		return $sql->fetchAll();
+	}
+	public static function atualizarQuantidadeProduto($quantidade,$produto_id){
+		$sql = MySql::conectar()->prepare(PainelSQL::atualizarQuantidadeProduto());
+		if($sql->execute(array($quantidade,$produto_id)) == true)
+			return true;
+		else
+			return false;
+	}
 	
 }
 

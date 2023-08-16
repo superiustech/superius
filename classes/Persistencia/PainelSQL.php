@@ -82,6 +82,20 @@ class PainelSQL{
     public static function atualizarStatusFinanceiro(){
         return "UPDATE CONTROLE_FINANCEIRO SET bFlStatus = 1 WHERE nCdControleFinanceiro = ?";
     }
+    public static function retornaEstoqueCompleto(){
+        return "SELECT CE.*, CEI.*
+        FROM CONTROLE_ESTOQUE CE
+        INNER JOIN CONTROLE_ESTOQUE_IMAGEM CEI ON CEI.nCdProduto = CE.nCdProduto
+        WHERE CEI.nCdImagem = (
+            SELECT MIN(nCdImagem)
+            FROM CONTROLE_ESTOQUE_IMAGEM
+            WHERE nCdProduto = CE.nCdProduto
+        )";
+    }
+    public static function atualizarQuantidadeProduto(){
+        return "UPDATE CONTROLE_ESTOQUE SET dQtItem = ? WHERE nCdProduto = ?";
+    }
+
 }
 
 ?>
