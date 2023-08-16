@@ -152,9 +152,9 @@ class Painel
 		$sql = MySql::conectar()->prepare(PainelSQL::insereImagem());
 		$sql->execute(array($lastId, $value));
 	}
-	public static function insereCliente($nome,$apelido,$email,$senha,$tipo,$documento,$imagem){
+	public static function insereCliente($nome,$apelido,$email,$senha,$tipo,$documento){
 		$sql = MySql::conectar()->prepare(PainelSQL::insereCliente());
-		$sql->execute(array($nome,$apelido,$email,$senha,$tipo,$documento,$imagem));
+		$sql->execute(array($nome,$apelido,$email,$senha,$tipo,$documento));
 	}
 	public static function atualizarCliente($nome,$apelido,$email,$senha,$tipo,$documento,$imagem,$id){
 		$sql = MySql::conectar()->prepare(PainelSQL::atualizarCliente());
