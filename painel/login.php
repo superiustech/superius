@@ -45,19 +45,20 @@
     ?>
 <div class="container-login">
     <div class="img-box">
-            <img src="uploads/logo.png">
+    <img src="uploads/sentadologin.png" id="img2">
     </div>
     <div class="content-box">
     <div class="form-box">
+
     <h2>Login</h2>
     <form method="post" class="form">
 
         <div class="input-box">
-            <span>Username</span>
+            <span>  Usuário</span>
             <input type="text" name="adminName" placeholder="Nome...">
         </div>
         <div class="input-box">
-            <span>Password</span>
+            <span>  Senha</span>
             <input type="password" name="adminPassword" placeholder="Senha...">
         </div>
         <div  class="remember">
