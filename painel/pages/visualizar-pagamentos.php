@@ -2,6 +2,38 @@
 
 <div class="title-content">
     <i class="fa-solid fa-pencil" style="color: #1f71ff;"></i>
+    <h3>Filtros - <?php echo NOME_EMPRESA ?></h3> 
+</div>
+
+<?php 
+$query = "";
+if(isset($_POST['acao']) && $_POST['acao'] == "Buscar"){
+    $busca = $_POST['busca'];
+    $query = "WHERE sNmCliente LIKE '%$busca%'";
+
+}
+
+$pendentes = Painel::retornaTodoFinanceiroSemStatus($query);
+
+?>
+
+<form method="post">
+<div class="form-group">
+        <input type="text" name="busca" placeholder="Procure por: nome, id.">
+    </div>
+    <div class="form-group">
+    <input type="submit" name="acao" value="Buscar">
+    <div class="linhas-retornadas"><p>Foram encontrados<b> <?php echo count($pendentes) ?> pagamento(s).</b></p></div>
+    </div>
+    </form>
+
+
+</div>
+
+<div class="box-content w100">
+
+<div class="title-content">
+    <i class="fa-solid fa-pencil" style="color: #1f71ff;"></i>
     <h3>Pagamentos pendentes - <?php echo NOME_EMPRESA ?></h3> 
 </div>
 
@@ -35,8 +67,17 @@
 
 <?php 
 
+
+$query = "";
+    if(isset($_POST['acao']) && $_POST['acao'] == "Buscar"){
+        $busca = $_POST['busca'];
+        $query = "WHERE sNmCliente LIKE '%$busca%'";
+
+    }
+
 $status = 0;
-$pendentes = Painel::retornaTodoFinanceiro($status);
+$pendentes = Painel::retornaTodoFinanceiro($status,$query);
+
 foreach ($pendentes as $value) {    
 $style = "";
 if(strtotime(date('Y-m-d')) >= strtotime($value['tDtVencimento'])){
@@ -82,7 +123,7 @@ if(strtotime(date('Y-m-d')) >= strtotime($value['tDtVencimento'])){
 <?php 
 
 $status = 1;
-$pendentes = Painel::retornaTodoFinanceiro($status);
+$pendentes = Painel::retornaTodoFinanceiro($status,$query);
 foreach ($pendentes as $value) {    
 if(strtotime(date('Y-m-d')) >= strtotime($value['tDtVencimento'])){
     $style = 'style="background-color: #ff2b2b;"';

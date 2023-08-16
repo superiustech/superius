@@ -486,6 +486,13 @@ table{
   background-color: #5e5e5e;
 }
 
+.linhas-retornadas{
+  padding: 15px;
+  color: #595959;
+  font-size: 14px;
+  margin-left: -15px;
+}
+
 /*MEDIA QUERY*/
 
 @media screen and (max-width: 768px) {

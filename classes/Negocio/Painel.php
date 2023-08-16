@@ -178,6 +178,11 @@ class Painel
 		return $sql->fetchAll();
 		return $sql->rowCount();
 	}
+	public static function carregarProdutosComFiltro($query){
+		$sql = MySql::conectar()->prepare(PainelSQL::carregarProdutosComFiltro($query));
+		$sql->execute();
+		return $sql->fetchAll();
+	}
 	public static function carregarUsuarios(){
 		$sql = MySql::conectar()->prepare(PainelSQL::carregarUsuarios());
 		$sql->execute();
@@ -196,11 +201,16 @@ class Painel
 	$sql->execute(array($cliente_id, $bFlStatus));
 	return $sql->fetchAll();	
 	}
-	public static function retornaTodoFinanceiro($bFlStatus){
-		$sql = MySql::conectar()->prepare(PainelSQL::retornaTodoFinanceiro());
+	public static function retornaTodoFinanceiro($bFlStatus, $query){
+		$sql = MySql::conectar()->prepare(PainelSQL::retornaTodoFinanceiro($query));
 		$sql->execute(array($bFlStatus));
 		return $sql->fetchAll();	
 		}
+		public static function retornaTodoFinanceiroSemStatus($query){
+			$sql = MySql::conectar()->prepare(PainelSQL::retornaTodoFinanceiroSemStatus($query));
+			$sql->execute();
+			return $sql->fetchAll();	
+			}
 	public static function atualizarStatusFinanceiro($nCdControleFinanceiro){
 		$sql = MySql::conectar()->prepare(PainelSQL::atualizarStatusFinanceiro());
 		if($sql->execute(array($nCdControleFinanceiro)) == true)
