@@ -67,6 +67,19 @@ td{
     </table>
 </div>
 
+
+<?php 
+$query = "";
+if(isset($_POST['acao']) && $_POST['acao'] == "Buscar"){
+    $busca = $_POST['busca'];
+    $query = "WHERE sNmCliente LIKE '%nogueira%'";
+
+}
+
+$pendentes = Painel::retornaTodoFinanceiroSemStatus($query);
+
+?>
+
 <?php 
 
 if ($nome == "Pendentes")
@@ -74,7 +87,7 @@ if ($nome == "Pendentes")
 else
     $status = 1;
     
-$pendentes = Painel::retornaTodoFinanceiro($status);
+$pendentes = Painel::retornaTodoFinanceiro($status,$query);
 foreach ($pendentes as $value) {    
 if(strtotime(date('Y-m-d')) >= strtotime($value['tDtVencimento'])){
     $style = 'style="background-color: #ff2b2b;"';
