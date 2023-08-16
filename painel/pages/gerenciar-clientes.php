@@ -5,6 +5,16 @@
     <h3>Buscar Usuário - <?php echo NOME_EMPRESA ?></h3> 
 </div>
 
+<?php 
+
+$query = "";
+if(isset($_POST['acao'])){
+    $busca = $_POST['busca'];
+    $query = "WHERE sDsApelido LIKE '%$busca%' OR sDsEmail LIKE '%$busca%' OR sNrCpfCnpj LIKE '%$busca%' OR sDsApelido LIKE '%$busca%'";
+}
+$clientes = Painel::carregarClientesComFiltro($query);
+
+?>
 
 <form method="post">
 <div class="form-group">
@@ -12,6 +22,7 @@
     </div>
     <div class="form-group">
     <input type="submit" name="acao" value="Buscar">
+    <div class="linhas-retornadas"><p>Foram encontrados<b> <?php echo count($clientes) ?> cliente(s).</b></p></div>
     </div>
     </form>
 

@@ -5,6 +5,18 @@
     <h3>Buscar produtos - <?php echo NOME_EMPRESA ?></h3> 
 </div>
 
+<?php 
+
+$query = "";
+if(isset($_POST['acao']) && $_POST['acao'] == "Buscar"){
+    $busca = $_POST['busca'];
+    $query = "AND sNmProduto LIKE '%$busca%'";
+
+}
+
+$produto = Painel::carregarProdutosComFiltro($query);
+
+?>
 
 <form method="post">
 <div class="form-group">
@@ -12,9 +24,9 @@
     </div>
     <div class="form-group">
     <input type="submit" name="acao" value="Buscar">
+    <div class="linhas-retornadas"><p>Foram encontrados<b> <?php echo count($produto) ?> produto(s).</b></p></div>
     </div>
     </form>
-
 </div>
 <div class="box-content w100 ">
 
@@ -42,8 +54,19 @@
 ?>
 
 <?php 
-    $produto = Painel::retornaEstoqueCompleto();
+
+    $query = "";
+    if(isset($_POST['acao']) && $_POST['acao'] == "Buscar"){
+        $busca = $_POST['busca'];
+        $query = "AND sNmProduto LIKE '%$busca%'";
+
+    }
+
+    $produto = Painel::carregarProdutosComFiltro($query);
+    // Painel::alert('sucesso', 'Foram retornados <b>'.count($produto).' produtos.</b>');
+
     foreach($produto as $prod){
+
 ?>
 <div class="boxes" id="boxes-produtos">
 <div class="boxes-topo" style="background-color: rgba(2,2,2,0);" style="width: 90%;" style="height: 90%;">

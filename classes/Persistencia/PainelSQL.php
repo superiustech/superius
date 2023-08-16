@@ -60,6 +60,16 @@ class PainelSQL{
     public static function carregarClientesComFiltro($query){
         return "SELECT * FROM CLIENTES $query";
     }
+    public static function carregarProdutosComFiltro($query){
+        return "SELECT CE.*, CEI.*
+        FROM CONTROLE_ESTOQUE CE
+        INNER JOIN CONTROLE_ESTOQUE_IMAGEM CEI ON CEI.nCdProduto = CE.nCdProduto
+        WHERE CEI.nCdImagem = (
+            SELECT MIN(nCdImagem)
+            FROM CONTROLE_ESTOQUE_IMAGEM
+            WHERE nCdProduto = CE.nCdProduto
+        ) ".$query;
+    }
     public static function carregarUsuarios(){
         return "SELECT * FROM USUARIOS_ADMIM";
     }
@@ -73,10 +83,16 @@ class PainelSQL{
         WHERE CF.nCdCliente = ? AND CF.bFlStatus = ? 
         ORDER BY CF.tDtVencimento ASC";
     }
-    public static function retornaTodoFinanceiro(){
+    public static function retornaTodoFinanceiro($query){
         return "SELECT * FROM CONTROLE_FINANCEIRO CF 
         INNER JOIN CLIENTES CL ON CL.nCdCliente = CF.nCdCliente
-        WHERE CF.bFlStatus = ? 
+        $query AND bFlStatus = ?
+        ORDER BY CF.tDtVencimento ASC";
+    }
+    public static function retornaTodoFinanceiroSemStatus($query){
+        return "SELECT * FROM CONTROLE_FINANCEIRO CF 
+        INNER JOIN CLIENTES CL ON CL.nCdCliente = CF.nCdCliente
+        $query
         ORDER BY CF.tDtVencimento ASC";
     }
     public static function atualizarStatusFinanceiro(){
