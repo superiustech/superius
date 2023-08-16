@@ -36,6 +36,7 @@ tr{
     justify-content: space-between;
 }
 td{
+    font-size: 50px;
     padding: 5px;
     margin-left: 20px;
     /* border-right: 1px solid black; */
@@ -61,7 +62,7 @@ td{
             <td>Nome do pagamento</td>
             <td>Cliente</td>
             <td>Valor</td>
-            <td>Venciemento</td>
+            <td>Vencimento</td>
         </tr>
     </table>
 </div>
