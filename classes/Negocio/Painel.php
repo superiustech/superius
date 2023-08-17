@@ -122,7 +122,8 @@ class Painel
 			echo '<div class="box-alert sucesso"><i class="fa fa-check"></i> '.$mensagem.'</div>';
 		}else if($tipo == 'erro'){
 			echo '<div class="box-alert erro"><i class="fa fa-times"></i> '.$mensagem.'</div>';
-		}
+		}else if($tipo == 'atencao')
+			echo '<div class="box-alert atencao"><i class="fa fa-warning"></i> '.$mensagem.'</div>';
 	}
 	
 	public static function uploadFile($file){
@@ -183,6 +184,12 @@ class Painel
 		$sql->execute();
 		return $sql->fetchAll();
 	}
+	public static function carregarProdutosFalta(){
+		$sql = MySql::conectar()->prepare(PainelSQL::carregarProdutosFalta());
+		$sql->execute();
+		return $sql->fetchAll();
+		
+	}
 	public static function carregarUsuarios(){
 		$sql = MySql::conectar()->prepare(PainelSQL::carregarUsuarios());
 		$sql->execute();
@@ -229,6 +236,11 @@ class Painel
 			return true;
 		else
 			return false;
+	}
+	public static function verificaEstoque(){
+		$sql = MySql::conectar()->prepare(PainelSQL::verificaEstoque());
+		$sql->execute();
+		return $sql;
 	}
 	
 }

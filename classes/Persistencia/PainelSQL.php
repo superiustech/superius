@@ -68,7 +68,16 @@ class PainelSQL{
             SELECT MIN(nCdImagem)
             FROM CONTROLE_ESTOQUE_IMAGEM
             WHERE nCdProduto = CE.nCdProduto
-        ) ".$query;
+        ) AND dQtItem > 0 ".$query;
+    }
+    public static function carregarProdutosFalta(){
+        return "SELECT CE.*, CEI.*
+        FROM CONTROLE_ESTOQUE CE
+        INNER JOIN CONTROLE_ESTOQUE_IMAGEM CEI ON CEI.nCdProduto = CE.nCdProduto
+        WHERE CEI.nCdImagem = (
+            SELECT MIN(nCdImagem)
+            FROM CONTROLE_ESTOQUE_IMAGEM
+            WHERE nCdProduto = CE.nCdProduto)  AND dQtItem = 0 ";
     }
     public static function carregarUsuarios(){
         return "SELECT * FROM USUARIOS_ADMIM";
@@ -110,6 +119,9 @@ class PainelSQL{
     }
     public static function atualizarQuantidadeProduto(){
         return "UPDATE CONTROLE_ESTOQUE SET dQtItem = ? WHERE nCdProduto = ?";
+    }
+    public static function verificaEstoque(){
+        return "SELECT * FROM CONTROLE_ESTOQUE WHERE dQtItem = 0";
     }
 
 }
