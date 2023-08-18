@@ -114,7 +114,7 @@ $produto = Painel::carregarProdutosComFiltro($query);
     </div>
     <div class="boxes-btn">
     <a class="btn deletex" href="<?php INCLUDE_PATH_PAINEL?>listar-produtos?deletar_item=<?php echo $prod['nCdProduto']?>"><i class="fa fa-times"></i>Excluir</a>
-    <a class="btn edit" href="<?php echo INCLUDE_PATH_PAINEL?>editar-clientes?id=0"><i class="fa-solid fa-pencil"></i>Editar</a>
+    <a class="btn edit" href="<?php echo INCLUDE_PATH_PAINEL?>editar-produtos?editar_item=<?php echo $prod['nCdProduto']?>"><i class="fa-solid fa-pencil"></i>Editar</a>
     </div><!-- boxes-btn -->
 </div>
 
