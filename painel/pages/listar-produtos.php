@@ -41,6 +41,25 @@ $produto = Painel::carregarProdutosComFiltro($query);
 <div class="boxes-content-edit">
 
 <?php 
+
+    if (isset($_GET['deletar_item'])){
+        $produto_id = $_GET['deletar_item'];
+        $imagem = Painel::retornaImagem($produto_id);
+       
+        if (Painel::deletarProduto($produto_id) && Painel::deletarImagemProduto($produto_id)) {
+            Painel::alert('sucesso', 'Produto deletado com sucesso!');
+
+            foreach ($imagem as $imgDeletar) {
+                $imagemPath = BASE_DIR_PAINEL . '\\uploads\\' . $imgDeletar['sDsImagem'];
+                @unlink($imagemPath);
+            }
+            
+        }
+        else{
+            Painel::alert('erro', 'Ocorreram erros no proessamento!');
+        }
+    }
+
     if(isset($_POST['atualizar'])){
         $produto_id = $_POST['produto_id'];
         $quantidade = $_POST['quantidade'];
@@ -94,7 +113,7 @@ $produto = Painel::carregarProdutosComFiltro($query);
         </form>
     </div>
     <div class="boxes-btn">
-    <a class="btn delete" item_id="0" href="<?php INCLUDE_PATH_PAINEL?>"><i class="fa fa-times"></i>Excluir</a>
+    <a class="btn deletex" href="<?php INCLUDE_PATH_PAINEL?>listar-produtos?deletar_item=<?php echo $prod['nCdProduto']?>"><i class="fa fa-times"></i>Excluir</a>
     <a class="btn edit" href="<?php echo INCLUDE_PATH_PAINEL?>editar-clientes?id=0"><i class="fa-solid fa-pencil"></i>Editar</a>
     </div><!-- boxes-btn -->
 </div>
@@ -116,7 +135,26 @@ $produto = Painel::carregarProdutosComFiltro($query);
 </div>
 <div class="boxes-content-edit">
 
-<?php 
+<?php
+
+if (isset($_GET['deletar_item'])){
+    $produto_id = $_GET['deletar_item'];
+    $imagem = Painel::retornaImagem($produto_id);
+   
+    if (Painel::deletarProduto($produto_id) && Painel::deletarImagemProduto($produto_id)) {
+        Painel::alert('sucesso', 'Produto deletado com sucesso!');
+
+        foreach ($imagem as $imgDeletar) {
+            $imagemPath = BASE_DIR_PAINEL . '\\uploads\\' . $imgDeletar['sDsImagem'];
+            @unlink($imagemPath);
+        }
+        
+    }
+    else{
+        Painel::alert('erro', 'Ocorreram erros no processamento!');
+    }
+}
+
     if(isset($_POST['atualizar'])){
         $produto_id = $_POST['produto_id'];
         $quantidade = $_POST['quantidade'];
@@ -156,7 +194,7 @@ $produto = Painel::carregarProdutosComFiltro($query);
         </form>
     </div>
     <div class="boxes-btn">
-    <a class="btn delete" item_id="0" href="<?php INCLUDE_PATH_PAINEL?>"><i class="fa fa-times"></i>Excluir</a>
+    <a class="btn deletex" item_id="0" href="<?php INCLUDE_PATH_PAINEL?>listar-produtos?deletar_item=<?php echo $prod['nCdProduto']?>"><i class="fa fa-times"></i>Excluir</a>
     <a class="btn edit" href="<?php echo INCLUDE_PATH_PAINEL?>editar-clientes?id=0"><i class="fa-solid fa-pencil"></i>Editar</a>
     </div><!-- boxes-btn -->
 </div>

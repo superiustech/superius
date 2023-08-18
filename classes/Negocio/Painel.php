@@ -242,7 +242,25 @@ class Painel
 		$sql->execute();
 		return $sql;
 	}
-	
+	public static function deletarProduto($produto_id){
+		$sql = MySQl::conectar()->prepare(PainelSQL::deletarProduto());
+		if($sql->execute(array($produto_id)) == true)
+			return true;
+		else	
+			return false;
+	}
+	public static function deletarImagemProduto($produto_id){
+		$sql = MySQl::conectar()->prepare(PainelSQL::deletarImagemProduto());
+		if($sql->execute(array($produto_id)) == true)
+			return true;
+		else	
+			return false;
+	}
+	public static function retornaImagem($produto_id){
+		$sql = MySql::conectar()->prepare(PainelSQL::retornaImagem());
+		if ($sql->execute(array($produto_id)) == true)
+			return $sql->fetchAll();
+	}
 }
 
 

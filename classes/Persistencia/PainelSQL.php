@@ -123,6 +123,15 @@ class PainelSQL{
     public static function verificaEstoque(){
         return "SELECT * FROM CONTROLE_ESTOQUE WHERE dQtItem = 0";
     }
+    public static function deletarProduto(){
+        return "DELETE FROM CONTROLE_ESTOQUE WHERE nCdProduto = ?";
+    }
+    public static function deletarImagemProduto(){
+        return "DELETE FROM CONTROLE_ESTOQUE_IMAGEM WHERE nCdProduto = ?";
+    }
+    public static function retornaImagem(){
+        return "SELECT * FROM CONTROLE_ESTOQUE_IMAGEM WHERE nCdProduto = ?";
+    }
 
 }
 
