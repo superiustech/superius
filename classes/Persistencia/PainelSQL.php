@@ -49,7 +49,7 @@ class PainelSQL{
         return "SELECT * FROM CLIENTES WHERE `sNmCliente` = ?";
 }
     public static function cadastrarProduto(){
-        return "INSERT INTO CONTROLE_ESTOQUE VALUES (null, ?,?,?,?,?,?,?)"; 
+        return "INSERT INTO CONTROLE_ESTOQUE VALUES (null, ?,?,?,?,?,?,?,?)"; 
     }
     public static function insereImagem(){
         return "INSERT INTO CONTROLE_ESTOQUE_IMAGEM VALUES (null, ?,?)";
@@ -146,7 +146,7 @@ class PainelSQL{
         return "SELECT * FROM CONTROLE_ESTOQUE WHERE nCdProduto = ?";
     }
     public static function atualizaProdutoPorId(){
-        return "UPDATE CONTROLE_ESTOQUE SET sNmProduto = ?, sDsProduto = ?, sDsLargura = ?, sDsAltura = ?, sDsComprimento = ?, sDsPeso = ? , dQtItem = ? WHERE nCdProduto = ?";
+        return "UPDATE CONTROLE_ESTOQUE SET sNmProduto = ?, sDsProduto = ?, sDsLargura = ?, sDsAltura = ?, sDsComprimento = ?, sDsPeso = ? , dQtItem = ? , dVlPreco = ? WHERE nCdProduto = ?";
     }
 }
 

@@ -104,6 +104,7 @@ $produto = Painel::carregarProdutosComFiltro($query);
 <div class="boxes-content">
     <div class="boxes-tipo bproduto"><i class="fa fa-pencil"></i><h5>Nome: </h5><p><?php echo $prod['sNmProduto'];?></p></div>
     <div class="boxes-tipo bproduto"><i class="fa fa-pencil"></i><h5>Descrição: </h5><p><?php echo $prod['sDsProduto'];?></p></div>
+    <div class="boxes-tipo bproduto"><i class="fa fa-pencil"></i><h5>Preço: </h5><p><?php echo $prod['dVlPreco'];?></p></div>
     <div class="boxes-tipo bproduto"><i class="fa fa-pencil"></i><h5>Largura: </h5><p><?php echo $prod['sDsLargura'];?></p></div>
     <div class="boxes-tipo bproduto"><i class="fa fa-pencil"></i><h5>Altura: </h5><p><?php echo $prod['sDsAltura'];?></p></div>
     <div class="boxes-tipo bproduto"><i class="fa fa-pencil"></i><h5>Comprimento: </h5><p><?php echo $prod['sDsComprimento'];?></p></div>
@@ -189,6 +190,7 @@ if (isset($_GET['deletar_item'])){
 <div class="boxes-content">
     <div class="boxes-tipo bproduto"><i class="fa fa-pencil"></i><h5>Nome: </h5><p><?php echo $prod['sNmProduto'];?></p></div>
     <div class="boxes-tipo bproduto"><i class="fa fa-pencil"></i><h5>Descrição: </h5><p><?php echo $prod['sDsProduto'];?></p></div>
+    <div class="boxes-tipo bproduto"><i class="fa fa-pencil"></i><h5>Preço: </h5><p><?php echo $prod['dVlPreco'];?></p></div>
     <div class="boxes-tipo bproduto"><i class="fa fa-pencil"></i><h5>Largura: </h5><p><?php echo $prod['sDsLargura'];?></p></div>
     <div class="boxes-tipo bproduto"><i class="fa fa-pencil"></i><h5>Altura: </h5><p><?php echo $prod['sDsAltura'];?></p></div>
     <div class="boxes-tipo bproduto"><i class="fa fa-pencil"></i><h5>Comprimento: </h5><p><?php echo $prod['sDsComprimento'];?></p></div>

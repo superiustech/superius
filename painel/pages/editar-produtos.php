@@ -92,8 +92,8 @@ if(isset($_POST['acao'])){
     $largura = $_POST['largura'];
     $altura = $_POST['altura'];
     $comprimento = $_POST['comprimento'];
+    $preco = Painel::formataMoedaBD($_POST['preco']);
     $sucesso = true;
-
     $imagens = array();
     $amountFiles =  count($_FILES['imagens']['name']);
     
@@ -125,16 +125,16 @@ if(isset($_POST['acao'])){
 
         $lastId = MySql::conectar()->lastInsertId();
         foreach($imagens as $value){
+            if($value != null)
             Painel::insereImagem($id,$value);
         }
-        Painel::atualizaProdutoPorId($nome, $descricao , $largura , $altura , $comprimento ,$peso ,$quantidade,$id);
+        Painel::atualizaProdutoPorId($nome, $descricao , $largura , $altura , $comprimento ,$peso ,$quantidade,$preco,$id);
         Painel::alert('sucesso', 'Atualizado com sucesso!');
     }
 }
 ?>
 
-<div class="form-group">
-
+    <div class="form-group">
         <label>Nome do Produto: </label>
         <input type="text" name="nome" value="<?php echo $infoProduto['sNmProduto']?>">
     </div>
@@ -145,6 +145,10 @@ if(isset($_POST['acao'])){
     <div class="form-group">
         <label>Quantidade do Produto: </label>
         <input type="text" name="quantidade" value="<?php echo $infoProduto['dQtItem']?>">
+    </div>
+    <div class="form-group">
+        <label>Preço: </label>
+        <input type="text" name="preco" value="<?php echo $infoProduto['dVlPreco']?>">
     </div>
     <div class="form-group">
         <label>Peso do Produto: </label>

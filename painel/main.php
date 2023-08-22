@@ -103,6 +103,9 @@ if (!isset($_SESSION['adminImg'])) {
 <?php Painel::loadJs(array('ajax.js') , ('cadastrar-clientes'))?>
 <?php Painel::loadJs(array('ajax.js') , ('editar-clientes'))?>
 <?php Painel::loadJs(array('controleFinanceiro.js') , ('editar-clientes'))?>
+<?php Painel::loadJs(array('helperMask.js') , ('editar-produtos'))?>
+<?php Painel::loadJs(array('jquery.maskMoney.js') , ('editar-produtos'))?>
+
 </body>
 </html>
 

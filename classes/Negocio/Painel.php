@@ -143,9 +143,9 @@ class Painel
 		$sql->execute(array($nome,$quantidade, $descricao, $largura, $altura, $peso, $comprimento));
 
 	}
-	public static function lastIdProduto($nome,$quantidade, $descricao,$largura, $altura, $peso, $comprimento){
+	public static function lastIdProduto($nome,$quantidade, $descricao,$largura, $altura, $peso, $comprimento, $preco){
 		$sql = MySql::conectar()->prepare(PainelSQL::cadastrarProduto());
-		return $sql->execute(array($nome,$quantidade, $descricao, $largura, $altura, $peso, $comprimento));
+		return $sql->execute(array($nome,$quantidade, $descricao, $largura, $altura, $peso, $comprimento, $preco));
 
 	}
 	public static function insereImagem($lastId, $value)
@@ -278,13 +278,19 @@ class Painel
         $sql->execute(array($id_produto));
         return $sql->fetch(); 
     }
-	public static function atualizaProdutoPorId($nome, $descricao , $largura , $altura , $comprimento ,$peso, $quantidade , $id) {
+	public static function atualizaProdutoPorId($nome, $descricao , $largura , $altura , $comprimento ,$peso, $quantidade ,$preco, $id) {
 		$sql = MySql::conectar()->prepare(PainelSQL::atualizaProdutoPorId());
-		if ($sql->execute(array($nome, $descricao , $largura , $altura , $comprimento , $peso,$quantidade, $id)) == true)
+		if ($sql->execute(array($nome, $descricao , $largura , $altura , $comprimento , $peso,$quantidade,$preco,$id)) == true)
 			return true;
 		else
 			return false;
 	}
+	public static function formataMoedaBD($valor) {
+		$valor = str_replace('.','',$valor);
+		$valor = str_replace(',','.',$valor);
+		return $valor;
+	}
+
 }
 
 
