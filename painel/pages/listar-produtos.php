@@ -88,7 +88,6 @@ $produto = Painel::carregarProdutosComFiltro($query);
         $query = "AND sNmProduto LIKE '%$busca%'";
 
     }
-
     $produto = Painel::carregarProdutosComFiltro($query);
     // Painel::alert('sucesso', 'Foram retornados <b>'.count($produto).' produtos.</b>');
 
@@ -96,7 +95,11 @@ $produto = Painel::carregarProdutosComFiltro($query);
 ?>
 <div class="boxes" id="boxes-produtos">
 <div class="boxes-topo" style="background-color: rgba(2,2,2,0);" style="width: 90%;" style="height: 90%;">
+        <?php if($prod['sDsImagem'] == ''){?>
+            <i class="fa fa-pencil"></i> 
+            <?php }else{?>
         <img src="<?php echo INCLUDE_PATH_PAINEL.'uploads/'.$prod['sDsImagem']?>" alt="">
+            <?php }?>
 </div>
 <div class="boxes-content">
     <div class="boxes-tipo bproduto"><i class="fa fa-pencil"></i><h5>Nome: </h5><p><?php echo $prod['sNmProduto'];?></p></div>
@@ -177,7 +180,11 @@ if (isset($_GET['deletar_item'])){
 ?>
 <div class="boxes" id="boxes-produtos">
 <div class="boxes-topo" style="background-color: rgba(2,2,2,0);" style="width: 90%;" style="height: 90%;">
+    <?php if($prod['sDsImagem'] == ''){?>
+            <i class="fa fa-pencil"></i> 
+            <?php }else{?>
         <img src="<?php echo INCLUDE_PATH_PAINEL.'uploads/'.$prod['sDsImagem']?>" alt="">
+            <?php }?>
 </div>
 <div class="boxes-content">
     <div class="boxes-tipo bproduto"><i class="fa fa-pencil"></i><h5>Nome: </h5><p><?php echo $prod['sNmProduto'];?></p></div>

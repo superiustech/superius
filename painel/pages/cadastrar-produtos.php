@@ -55,8 +55,6 @@ if(isset($_POST['acao'])){
         foreach($imagens as $key => $value){
             Painel::insereImagem($lastId,$value);
         }
-
-        Painel::cadastrarProduto($nome,$quantidade, $descricao,$largura, $altura, $peso, $comprimento);
         Painel::alert('sucesso', 'Cadastrado com sucesso!');
     }
     

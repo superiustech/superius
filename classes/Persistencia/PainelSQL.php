@@ -61,23 +61,27 @@ class PainelSQL{
         return "SELECT * FROM CLIENTES $query";
     }
     public static function carregarProdutosComFiltro($query){
-        return "SELECT CE.*, CEI.*
+        return "SELECT CE.*, COALESCE(CEI.nCdImagem, '') AS nCdImagem, COALESCE(CEI.sDsImagem, '') AS sDsImagem
         FROM CONTROLE_ESTOQUE CE
-        INNER JOIN CONTROLE_ESTOQUE_IMAGEM CEI ON CEI.nCdProduto = CE.nCdProduto
-        WHERE CEI.nCdImagem = (
-            SELECT MIN(nCdImagem)
+        LEFT JOIN (
+            SELECT nCdProduto, nCdImagem AS minImagem
             FROM CONTROLE_ESTOQUE_IMAGEM
-            WHERE nCdProduto = CE.nCdProduto
-        ) AND dQtItem > 0 ".$query;
+            GROUP BY nCdProduto
+        ) CEI_MIN ON CE.nCdProduto = CEI_MIN.nCdProduto
+        LEFT JOIN CONTROLE_ESTOQUE_IMAGEM CEI ON CEI.nCdProduto = CE.nCdProduto AND CEI.nCdImagem = CEI_MIN.minImagem
+        WHERE CE.dQtItem > 0".$query;
     }
+    
     public static function carregarProdutosFalta(){
-        return "SELECT CE.*, CEI.*
+        return "SELECT CE.*, COALESCE(CEI.nCdImagem, '') AS nCdImagem, COALESCE(CEI.sDsImagem, '') AS sDsImagem
         FROM CONTROLE_ESTOQUE CE
-        INNER JOIN CONTROLE_ESTOQUE_IMAGEM CEI ON CEI.nCdProduto = CE.nCdProduto
-        WHERE CEI.nCdImagem = (
-            SELECT MIN(nCdImagem)
+        LEFT JOIN (
+            SELECT nCdProduto, nCdImagem AS minImagem
             FROM CONTROLE_ESTOQUE_IMAGEM
-            WHERE nCdProduto = CE.nCdProduto)  AND dQtItem = 0 ";
+            GROUP BY nCdProduto
+        ) CEI_MIN ON CE.nCdProduto = CEI_MIN.nCdProduto
+        LEFT JOIN CONTROLE_ESTOQUE_IMAGEM CEI ON CEI.nCdProduto = CE.nCdProduto AND CEI.nCdImagem = CEI_MIN.minImagem
+        WHERE CE.dQtItem = 0";
     }
     public static function carregarUsuarios(){
         return "SELECT * FROM USUARIOS_ADMIM";
@@ -129,10 +133,21 @@ class PainelSQL{
     public static function deletarImagemProduto(){
         return "DELETE FROM CONTROLE_ESTOQUE_IMAGEM WHERE nCdProduto = ?";
     }
+    public static function deletarImagemPorId(){
+        return "DELETE FROM CONTROLE_ESTOQUE_IMAGEM WHERE nCdImagem = ?";
+    }
     public static function retornaImagem(){
         return "SELECT * FROM CONTROLE_ESTOQUE_IMAGEM WHERE nCdProduto = ?";
     }
-
+    public static function retornaImagemPorId(){
+        return "SELECT sDsImagem FROM CONTROLE_ESTOQUE_IMAGEM WHERE nCdImagem = ?";
+    }
+    public static function retornaProdutoPorId(){
+        return "SELECT * FROM CONTROLE_ESTOQUE WHERE nCdProduto = ?";
+    }
+    public static function atualizaProdutoPorId(){
+        return "UPDATE CONTROLE_ESTOQUE SET sNmProduto = ?, sDsProduto = ?, sDsLargura = ?, sDsAltura = ?, sDsComprimento = ?, sDsPeso = ? , dQtItem = ? WHERE nCdProduto = ?";
+    }
 }
 
 ?>

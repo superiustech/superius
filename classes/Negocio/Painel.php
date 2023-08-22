@@ -256,10 +256,34 @@ class Painel
 		else	
 			return false;
 	}
+	public static function deletarImagemPorId($idImagem){
+		$sql = MySQl::conectar()->prepare(PainelSQL::deletarImagemPorId());
+		if($sql->execute(array($idImagem)) == true)
+			return true;
+		else	
+			return false;
+	}
 	public static function retornaImagem($produto_id){
 		$sql = MySql::conectar()->prepare(PainelSQL::retornaImagem());
 		if ($sql->execute(array($produto_id)) == true)
 			return $sql->fetchAll();
+	}
+	public static function retornaImagemPorId($id_imagem){
+		$sql = MySql::conectar()->prepare(PainelSQL::retornaImagemPorId());
+		if ($sql->execute(array($id_imagem)) == true)
+			return $sql->fetchAll();
+	}
+	public static function retornaProdutoPorId($id_produto) {
+        $sql = MySql::conectar()->prepare(PainelSQL::retornaProdutoPorId());
+        $sql->execute(array($id_produto));
+        return $sql->fetch(); 
+    }
+	public static function atualizaProdutoPorId($nome, $descricao , $largura , $altura , $comprimento ,$peso, $quantidade , $id) {
+		$sql = MySql::conectar()->prepare(PainelSQL::atualizaProdutoPorId());
+		if ($sql->execute(array($nome, $descricao , $largura , $altura , $comprimento , $peso,$quantidade, $id)) == true)
+			return true;
+		else
+			return false;
 	}
 }
 
