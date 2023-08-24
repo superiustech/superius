@@ -29,6 +29,8 @@ include('classes/Router.php');
 include('classes/Persistencia/PainelSQL.php');
 include('classes/Persistencia/SiteSQL.php');
 include('classes/Persistencia/MySqlSQL.php');
+include('classes/Persistencia/LojaSQL.php');
+include('classes/Negocio/Loja.php');
 include('classes/models/homeModel.php');
 
 //FUNÇÕES 

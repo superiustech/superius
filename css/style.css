@@ -88,7 +88,7 @@ body, h1, h2, h3, p, img, ul, li {
   
 
 
-/*MEXE NA BOX*/
+/*MEXE NA BOX DE ITEM*/
 
 .center{
     flex-wrap: wrap;
@@ -150,17 +150,10 @@ img{
     background-color: #0f64f6;
   }
    /*EDITAR USUÁRIO */
-  
-  .msgCadastro p{
-    margin: 10px 50px;
-    color: green;
-  }
-  
+
   .menu-active{
     background-color: rgb(36, 48, 78);
   }
-  
-  /*GERENCIAR CLIENTES*/
   
   .boxes{
     display: flex ;
@@ -170,7 +163,7 @@ img{
     margin-left: 20px;
     max-width: 300px;
     margin: 20px;
-    padding: 10px;
+    padding: 20px;
     background-color: #ffffff;
     transition: 0.3s;
   }
@@ -221,10 +214,292 @@ img{
     font-size: 28px;
   }
   .parcelamento{
+    position: relative;
+    bottom: 0;
+    z-index: 1;
     color: #3b3838;
     font-size: 12px;
-    padding: 10px;
+    padding: 4px 8px;
   }
   a{
     text-align: center;
   }
+  .box-adicionar{
+    display: none;
+    background-color: #0f64f6;
+    width: 95%;
+    margin: 0 auto;
+    padding: 20px;
+    text-align: center;
+    border-radius: 10px;
+    position: relative;
+    z-index: 1;
+  }
+  .box-adicionar a{
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 14px;
+    color: white;
+  }
+
+  /* LANDING PAGE */
+
+  @import url('https://fonts.googleapis.com/css2?family=Montserrat&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;1,300;1,700&display=swap');
+  @import url('https://fonts.googleapis.com/css?family=Montserrat:400,700&display=swap');
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: montserrat;
+}
+.container-login{
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+}
+
+.img-box{
+display: flex;
+align-items: center;
+flex-direction: column;
+width: 50%;
+height: 100%;
+justify-content: space-around;
+background-color: #0658F6;
+padding: 20px;
+}
+
+.img-box img{
+    width: 30%;
+    height: 30%;
+}
+#img2{
+    width: 70%;
+    height: 70%;
+}
+.form-box .img{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    margin: 0 auto;
+    width: 100%;
+}
+#img1{
+    width: 200px;
+    height: 200px;
+}
+.content-box{
+
+display: flex;
+justify-content: center;
+align-items: center;
+width: 50%;
+height: 100%;
+}
+.content-box .form-box{
+width: 50%;
+}
+.content-box .form-box .ul{
+
+display: flex;
+align-items: center;
+justify-items: center;
+}
+.content-box .form-box .ul  li{
+
+list-style: none;
+width: 60px;
+height: 60px;
+display: flex;
+justify-content: center;
+align-items: center;
+border-radius: 50%;
+margin: 0 7px;
+cursor: pointer;
+transition: 0.3;
+}
+
+.content-box .form-box .ul  li:hover{
+background: #e4e4e4;
+}
+
+.form-box .ul li img{
+width: 40px;
+}
+
+.content-box .form-box h2{
+color: #32324f;
+font-weight: 600;
+font-size: 2em;
+text-transform: uppercase;
+margin-bottom: 15px;
+text-align: center;
+}
+
+.content-box .form-box .input-box {
+margin-bottom: 20px;
+}
+
+.content-box .form-box .input-box input{
+ width: 100%;
+ padding: 10px;
+ outline: none;
+font-weight: 400;
+border: none;
+font-size: 17px;
+color: #32324f;
+background-color: #ecf2f7;
+border-radius: 5px;
+}
+
+.content-box .form-box .input-box span{
+
+   font-size: 16px;
+   margin-bottom: 5px;
+   display: inline-block;
+   color: 32324f;
+   font-weight: 400;
+   }
+
+   .content-box .form-box .input-box input::placeholder{
+    color: #a9adb6;
+   }
+
+   .content-box .form-box .input-box input[type=submit]{
+   background:  #0658F6;
+   color: #fff;
+   outline: none;
+   border: none;
+   font-weight: 500;
+   cursor: pointer;
+   font-size: 20px;
+   transition:0.3s;
+   }
+
+   .content-box .form-box .input-box input[type=submit]:hover {
+    background: #3286ca;
+    }
+
+    .content-box .form-box  .remember{
+    margin-bottom: 20px;
+    color: #32324f;
+    font-weight: 400;
+    font-size: 14px;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    }
+
+    .content-box .form-box .remember  a{
+    text-decoration: none;
+    color: #4aa4ee;
+    }
+
+    .content-box .form-box .remember  a:hover{
+        color: #3286ca;
+    }
+
+    .content-box .form-box .input-box p{
+    color: #32324f;
+    }
+
+    .content-box .form-box .input-box p a{
+        color: #4aa4ee;
+    }
+
+    .content-box .form-box .input-box p a:hover{
+        color: #3286ca;
+    }
+
+    .content-box .form-box h3{
+        color: #607d8b;
+        text-decoration: none;
+        margin: 40px 0 15px;
+        font-weight: 500;
+        text-align: center;
+        font-size: 22px;
+    }
+
+@media (max-width:868px) {
+.container-login .img-box{
+display: none;
+}
+
+.container-login .content-box{
+    width: 100%;
+}
+
+.container-login .content-box .form-box{
+    width: 100%;
+    padding: 40px;
+    background: white ;
+    margin: 50px;
+}
+
+.container-login .content-box .form-box h3{
+margin: 30px 0 10px;
+}
+}
+@media (max-width:450px) {
+.container-login .content-box .form-box .remember{
+
+    flex-wrap: wrap;
+}
+
+.container-login .content-box .form-box .remember a{
+    margin-top: 20px;
+}
+
+}
+
+/*FINALIZAR PEDIDO*/
+.tabela-pedidos{
+  margin-top: 40px;
+}
+.tabela-pedidos td{
+  border: 1px solid #333;
+  padding: 10px;
+}
+.tabela-pedidos tr:first-of-type{
+  font-weight: bold;
+}
+.table-container{
+  width: 1080px;
+  margin: 0 auto;
+  border: 1px solid rgb(139, 139, 139);
+  display: block;
+}
+.table-container table{
+  width: 100%;
+  border-collapse: collapse;
+}
+.table-container h3{
+  border-bottom: 2px solid rgb(145, 145, 145);
+  padding: 10px;
+}
+.table-container h2{
+  text-align: left;
+  color: #000000;
+  font-weight: 300;
+}
+.btn-pagamento{
+  padding: 10px;
+  display: inline-block;
+  text-decoration: none;
+  font-weight: bold;
+  border-radius: 20px;
+  color: rgb(255, 255, 255);
+  background-color: rgb(55, 169, 235);
+}
+.pagar {
+  display: flex;
+  justify-content:end;
+  flex-direction: column;
+  align-items: end;
+  gap: 10px;
+  
+}
+.clear{
+  clear:both;
+}

@@ -2,16 +2,17 @@
 namespace controller;
 use \views\mainView;
 
-class finalizarController
+class loginController
 {
     public function index(){
 
-		if(\Loja::logado() == false){
+        if(\Loja::logado() == false){
             \views\mainView::render('login.php');
         }else{
-			    \views\mainView::render('finalizar.php');
+            \views\mainView::render('finalizar.php');
         }
 
+	
 	}
 	
 	

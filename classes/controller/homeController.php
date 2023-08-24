@@ -18,8 +18,12 @@ class homeController
 			}
 			
 		}
-	
-		\views\mainView::render('home.php');
+		if(\Loja::logado() == false){
+            \views\mainView::render('home.php');
+        }else{
+            \views\mainView::render('home.php');
+        }
+		
 	}
 	
 	
