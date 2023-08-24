@@ -22,7 +22,7 @@ if(isset($_POST['acao'])){
     $preco = Painel::formataMoedaBD($_POST['preco']);
     $imagens = array();
     $amountFiles =  count($_FILES['imagens']['name']);
-    
+    $id = 14;
     if($_FILES['imagens']['name'][0] != '')
 
     for($i = 0; $i < $amountFiles; $i++){
@@ -53,8 +53,8 @@ if(isset($_POST['acao'])){
         $sql = Painel::lastIdProduto($nome,$quantidade, $descricao,$largura, $altura, $peso, $comprimento, $preco);
         $lastId = MySql::conectar()->lastInsertId();
         foreach($imagens as $key => $value){
-            echo 'aaaa';
-            Painel::insereImagem($id,$value);
+            if($value != null)
+            Painel::insereImagem($lastId,$value);
         }
         Painel::alert('sucesso', 'Cadastrado com sucesso!');
     }

@@ -14,6 +14,9 @@ class Painel
 	public static function redirecionar(){
 		header('Location: '.INCLUDE_PATH_PAINEL);
 	}
+	public static function redirecionarInicio(){
+		header('Location: '.INCLUDE_PATH);
+	}
 	public static function pegaCargo($nome) {
 		$sql = MySql::conectar()->prepare(PainelSQL::pegaCargo());
 		$sql->execute(array($nome));

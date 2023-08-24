@@ -1,6 +1,7 @@
 <?php
 	class MySql{
 
+
 		private static $pdo;
 
 		// FAZ CONEXÃO COM O BANCO DE DADOS.

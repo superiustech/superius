@@ -1,0 +1,230 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;1,300;1,700&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Montserrat:400,700&display=swap');
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: montserrat;
+}
+body{
+    background-color: #ebebeb;
+}
+
+/*HEADER*/
+
+/* Reset some default styles for consistency */
+body, h1, h2, h3, p, img, ul, li {
+    margin: 0;
+    padding: 0;
+    border: 0;
+  }
+  
+  header{
+    width: 100%;
+    justify-content: space-between;
+    background-color: #0f64f6;
+  }
+  /* Define general styles */
+  body {
+    font-family: Arial, sans-serif;
+  }
+  
+  .container {
+    max-width: 1500px;
+    margin: 0 auto;
+    padding: 10px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+  }
+  
+  .opcoes {
+    display: flex;
+    flex-direction: row;
+  }
+  
+  .opcoes a {
+    text-decoration: none;
+    margin-right: 0px;
+    color: #333;
+  }
+  
+  .finalizar-carrinho a {
+    text-decoration: none;
+    margin-right: 15px;
+    color: #ffffff;
+  }
+  
+  .fa-solid {
+    margin-right: 0px;
+  }
+  
+  /* Responsive styles */
+  @media screen and (max-width: 508px) {
+    .menu-icon {
+      display: block;
+    }
+    
+    .opcoes {
+      display: none;
+      flex-direction: column;
+      position: absolute;
+      top: 70px;
+      left: 0;
+      background-color: #f8f8f8;
+      width: 100%;
+      box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+      padding: 10px;
+    }
+    
+    .opcoes.active {
+      display: flex;
+    }
+    
+    .finalizar-carrinho {
+      display: none;
+    }
+  }
+  
+
+
+/*MEXE NA BOX*/
+
+.center{
+    flex-wrap: wrap;
+    justify-content: space-around;
+    display: flex;
+    width: 100%;
+    padding: 15px 2%;
+}
+h2{
+    text-align: center;
+    font-size: 18px;
+    font-weight: 800;
+    color: white;
+}
+
+i{
+    font-size:25px;
+    width: 50px;
+}
+.logo{
+    width: 80px;
+    height: 80px;
+}
+.logo img{
+    transform: translate(-25%,-25%);
+    width: 200%;
+    height: 200%;
+
+}
+img{
+    width: 100%;
+    height: 100%;
+}
+.chamada-escolher{
+    background-color: #74C0FC;
+}
+.produto-single-box{
+    width: 200px;
+    height: 200px;
+}
+.produto-single-box img{
+    width: 100%;
+    height: 100%;
+}#boxes-form{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    gap: 5px;
+    margin-bottom: 10px;
+  }
+  .boxes .boxes-topo img{
+    width: 100%;
+  }
+  .form-group label{
+    font-weight: normal;
+    margin-left: 10px;
+  }
+  .form-group input:hover{
+    background-color: #0f64f6;
+  }
+   /*EDITAR USUÁRIO */
+  
+  .msgCadastro p{
+    margin: 10px 50px;
+    color: green;
+  }
+  
+  .menu-active{
+    background-color: rgb(36, 48, 78);
+  }
+  
+  /*GERENCIAR CLIENTES*/
+  
+  .boxes{
+    display: flex ;
+    flex-direction: column;
+    gap: 10px;
+    width: 100%;
+    margin-left: 20px;
+    max-width: 300px;
+    margin: 20px;
+    padding: 10px;
+    background-color: #ffffff;
+    transition: 0.3s;
+  }
+  .boxes:hover{
+    box-shadow: -1px -1px 45px -22px rgba(0,0,0,0.75);
+  }
+  .boxes-tipo {
+    font-size: 12px;
+    gap: 30px;
+    width: 100%;    
+    /* Evita que o texto quebre em várias linhas */
+  }
+  .boxes-tipo h2{
+    text-align: left;
+    word-wrap: break-word;
+    padding: 5px;
+    color: rgb(35, 35, 35);
+    white-space: wrap;
+  }
+  
+
+  .btn{
+      color: white;
+      padding: 5px;
+      background-color: gray;
+      font-size: 12px;
+      text-decoration: none;
+      padding: 10px;
+      text-align: center;
+      width: 50px;
+      border-radius: 30px;
+  
+  }
+  .preco{
+    display: block;
+    width: 100%;
+    text-align: center;
+    padding: 10px;
+    justify-content: left;
+    align-items: end;
+  }
+  .preco .desconto{
+    font-size: 15px;
+    text-decoration:line-through;
+    color: rgb(57, 56, 56);
+  }
+  .preco .oficial{
+    font-size: 28px;
+  }
+  .parcelamento{
+    color: #3b3838;
+    font-size: 12px;
+    padding: 10px;
+  }
+  a{
+    text-align: center;
+  }
