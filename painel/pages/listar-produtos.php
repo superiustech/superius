@@ -14,8 +14,7 @@ if (isset($_GET['pendentes']) == false){
 $query = "";
 if(isset($_POST['acao']) && $_POST['acao'] == "Buscar"){
     $busca = $_POST['busca'];
-    $query = "AND sNmProduto LIKE '%$busca%'";
-
+    $query = " AND (CE.sNmProduto LIKE '%$busca%' OR CE.nCdProduto LIKE '%$busca%')";
 }
 
 $produto = Painel::carregarProdutosComFiltro($query);
@@ -82,13 +81,14 @@ $produto = Painel::carregarProdutosComFiltro($query);
 
 <?php 
 
-    $query = "";
-    if(isset($_POST['acao']) && $_POST['acao'] == "Buscar"){
-        $busca = $_POST['busca'];
-        $query = "AND sNmProduto LIKE '%$busca%'";
+$query = "";
+if(isset($_POST['acao']) && $_POST['acao'] == "Buscar"){
+    $busca = $_POST['busca'];
+    $query = " AND (CE.sNmProduto LIKE '%$busca%' OR CE.nCdProduto LIKE '%$busca%')";
+}
 
-    }
-    $produto = Painel::carregarProdutosComFiltro($query);
+$produto = Painel::carregarProdutosComFiltro($query);
+
     // Painel::alert('sucesso', 'Foram retornados <b>'.count($produto).' produtos.</b>');
 
     foreach($produto as $prod){
@@ -102,9 +102,10 @@ $produto = Painel::carregarProdutosComFiltro($query);
             <?php }?>
 </div>
 <div class="boxes-content">
+    <div class="boxes-tipo bproduto"><i class="fa fa-pencil"></i><h5>Codigo Produto: </h5><p><?php echo $prod['nCdProduto'];?></p></div>
     <div class="boxes-tipo bproduto"><i class="fa fa-pencil"></i><h5>Nome: </h5><p><?php echo $prod['sNmProduto'];?></p></div>
     <div class="boxes-tipo bproduto"><i class="fa fa-pencil"></i><h5>Descrição: </h5><p><?php echo $prod['sDsProduto'];?></p></div>
-    <div class="boxes-tipo bproduto"><i class="fa fa-pencil"></i><h5>Preço: </h5><p><?php echo $prod['dVlPreco'];?></p></div>
+    <div class="boxes-tipo bproduto"><i class="fa fa-pencil"></i><h5>Preço: </h5><p><?php echo $prod['dVlPrecoDesconto'];?></p></div>
     <div class="boxes-tipo bproduto"><i class="fa fa-pencil"></i><h5>Largura: </h5><p><?php echo $prod['sDsLargura'];?></p></div>
     <div class="boxes-tipo bproduto"><i class="fa fa-pencil"></i><h5>Altura: </h5><p><?php echo $prod['sDsAltura'];?></p></div>
     <div class="boxes-tipo bproduto"><i class="fa fa-pencil"></i><h5>Comprimento: </h5><p><?php echo $prod['sDsComprimento'];?></p></div>
@@ -119,6 +120,7 @@ $produto = Painel::carregarProdutosComFiltro($query);
     <div class="boxes-btn">
     <a class="btn deletex" href="<?php INCLUDE_PATH_PAINEL?>listar-produtos?deletar_item=<?php echo $prod['nCdProduto']?>"><i class="fa fa-times"></i>Excluir</a>
     <a class="btn edit" href="<?php echo INCLUDE_PATH_PAINEL?>editar-produtos?editar_item=<?php echo $prod['nCdProduto']?>"><i class="fa-solid fa-pencil"></i>Editar</a>
+    <a class="btn" href="<?php INCLUDE_PATH_PAINEL?>adicionar-descontos?id_produto=<?php echo $prod['nCdProduto']?>"><i class="fa fa-percent "></i> DSC</a>
     </div><!-- boxes-btn -->
 </div>
 
@@ -188,6 +190,7 @@ if (isset($_GET['deletar_item'])){
             <?php }?>
 </div>
 <div class="boxes-content">
+    <div class="boxes-tipo bproduto"><i class="fa fa-pencil"></i><h5>Codigo Produto: </h5><p><?php echo $prod['nCdProduto'];?></p></div>
     <div class="boxes-tipo bproduto"><i class="fa fa-pencil"></i><h5>Nome: </h5><p><?php echo $prod['sNmProduto'];?></p></div>
     <div class="boxes-tipo bproduto"><i class="fa fa-pencil"></i><h5>Descrição: </h5><p><?php echo $prod['sDsProduto'];?></p></div>
     <div class="boxes-tipo bproduto"><i class="fa fa-pencil"></i><h5>Preço: </h5><p><?php echo $prod['dVlPreco'];?></p></div>
@@ -196,7 +199,7 @@ if (isset($_GET['deletar_item'])){
     <div class="boxes-tipo bproduto"><i class="fa fa-pencil"></i><h5>Comprimento: </h5><p><?php echo $prod['sDsComprimento'];?></p></div>
     <div class="boxes-btn">
         <form id="boxes-form" method="post">
-            <div class="boxes-tipo"><i class="fa fa-pencil"></i><h5>Quantidade: </h5></div> 
+            <div class="boxes-tipo"><i class="fa fa-pencil"></i><h5>Quantidade: </h5></div>     
             <input type="number" name="quantidade" min="0" step="1" value="<?php echo $prod['dQtItem'];?>">
             <input type="hidden" name="produto_id" value="<?php echo $prod['nCdProduto'];?>">
             <input type="submit" name="atualizar" value="Enviar" style="width: 70px;" style="margin-bottom: 5px;">

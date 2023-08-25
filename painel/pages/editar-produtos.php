@@ -94,6 +94,7 @@ if(isset($_POST['acao'])){
     $comprimento = $_POST['comprimento'];
     $preco = Painel::formataMoedaBD($_POST['preco']);
     $sucesso = true;
+    $descricaoDetalhada = $_POST['descricao-detalhada'];
     $imagens = array();
     $amountFiles =  count($_FILES['imagens']['name']);
     
@@ -128,7 +129,7 @@ if(isset($_POST['acao'])){
             if($value != null)
             Painel::insereImagem($id,$value);
         }
-        Painel::atualizaProdutoPorId($nome, $descricao , $largura , $altura , $comprimento ,$peso ,$quantidade,$preco,$id);
+        Painel::atualizaProdutoPorId($nome, $descricao , $largura , $altura , $comprimento ,$peso ,$quantidade,$preco,$descricaoDetalhada ,$id);
         Painel::alert('sucesso', 'Atualizado com sucesso!');
     }
 }
@@ -141,6 +142,10 @@ if(isset($_POST['acao'])){
     <div class="form-group">
         <label>Descrição do Produto: </label>
         <textarea name="descricao"><?php echo $infoProduto['sDsProduto']?></textarea>
+    </div>
+    <div class="form-group">
+        <label>Descrição detalhada: </label>
+        <textarea name="descricao-detalhada"><?php echo $infoProduto['sDsProdutoDetalhada']?></textarea>
     </div>
     <div class="form-group">
         <label>Quantidade do Produto: </label>

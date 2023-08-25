@@ -6,8 +6,10 @@
 
 $itens = homeModel::retornaEstoqueCompleto();
 foreach($itens as $prod){
-
-
+$precoDividido = $prod['dVlPreco'] / 12;
+$precoPix =$prod['dVlPrecoDesconto'] - ((1 * 10) / 100);
+$precoDividido = Loja::convertMoney($precoDividido);
+$precoPix = Loja::convertMoney($precoPix);
 
 ?>
 <div class="boxes boxes-produtos">
@@ -21,13 +23,13 @@ foreach($itens as $prod){
 <div class="boxes-content">
     <div class="boxes-tipo bproduto"></h5><h2><?php echo $prod['sDsProduto'];?></h2></div>
     <div class="preco">
-    <div class="boxes-tipo desconto"><h5>De: R$ <?php echo '432.00' ?></h5></div>
-    <div class="boxes-tipo oficial"><h5> R$ <?php echo $prod['dVlPreco'];?></h5></div>
+    <div class="boxes-tipo desconto"><h5>De: R$ <?php echo $prod['dVlPreco'];?></h5></div>
+    <div class="boxes-tipo oficial"><h5> R$ <?php echo $prod['dVlPrecoDesconto'];?></h5></div>
     </div>
    
     <div class="parcelamento">
-        <p>Parcele em até 12x sem juros de <b>R$ <?php echo $prod['dVlPreco']?></b> sem juros
-        ou até <b>R$ <?php echo $prod['dVlPreco'] - 100?></b> no PIX </p>
+        <p>Parcele em até 12x sem juros de <b>R$ <?php echo $precoDividido;  ?></b> sem juros
+        ou até <b>R$ <?php echo $precoPix;?></b> no PIX </p>
     </div>
     <div class="box-adicionar">
     <a href="<?php INCLUDE_PATH ?>?adicionar-carrinho=<?php echo $prod['nCdProduto']; ?>"><p>Adicionar ao carrinho!</p></a>

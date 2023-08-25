@@ -63,6 +63,7 @@ if (!isset($_SESSION['adminImg'])) {
         <a <?php selecionadoMenu('cadastrar-produtos'); ?> href="<?php INCLUDE_PATH_PAINEL ?>cadastrar-produtos">Cadastrar Produtos</a>
         <a <?php selecionadoMenu('listar-produtos'); ?> href="<?php INCLUDE_PATH_PAINEL ?>listar-produtos">Listar Produtos</a>
         <a <?php selecionadoMenu('editar-produtos'); ?> href="<?php INCLUDE_PATH_PAINEL ?>editar-produtos">Editar Produtos</a>
+        <a <?php selecionadoMenu('adicionar-descontos'); ?> href="<?php INCLUDE_PATH_PAINEL ?>adicionar-descontos">Adicionar Descontos</a>
 
         <!-- Controle Estoque  -->
 

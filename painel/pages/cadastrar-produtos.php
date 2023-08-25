@@ -20,6 +20,8 @@ if(isset($_POST['acao'])){
     $peso = $_POST['peso'];
     $comprimento = $_POST['comprimento'];
     $preco = Painel::formataMoedaBD($_POST['preco']);
+    $desconto = 0;
+    $descricaoDetalhada = $_POST['descricao-detalhada'];
     $imagens = array();
     $amountFiles =  count($_FILES['imagens']['name']);
     $id = 14;
@@ -50,7 +52,7 @@ if(isset($_POST['acao'])){
             $imagens[] = Painel::uploadFile($imagemAtual);
         }
 
-        $sql = Painel::lastIdProduto($nome,$quantidade, $descricao,$largura, $altura, $peso, $comprimento, $preco);
+        $sql = Painel::lastIdProduto($nome,$quantidade, $descricao,$largura, $altura, $peso, $comprimento, $preco, $preco, $desconto ,$descricaoDetalhada);
         $lastId = MySql::conectar()->lastInsertId();
         foreach($imagens as $key => $value){
             if($value != null)
@@ -70,6 +72,10 @@ if(isset($_POST['acao'])){
     <div class="form-group">
         <label>Descrição do Produto: </label>
         <textarea name="descricao"></textarea>
+    </div>
+    <div class="form-group">
+        <label>Descrição detalhada: </label>
+        <textarea name="descricao-detalhada"></textarea>
     </div>
     <div class="form-group">
         <label>Quantidade do Produto: </label>

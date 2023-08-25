@@ -146,9 +146,9 @@ class Painel
 		$sql->execute(array($nome,$quantidade, $descricao, $largura, $altura, $peso, $comprimento));
 
 	}
-	public static function lastIdProduto($nome,$quantidade, $descricao,$largura, $altura, $peso, $comprimento, $preco){
+	public static function lastIdProduto($nome,$quantidade, $descricao,$largura, $altura, $peso, $comprimento, $preco, $precoDescnto, $desconto ,$descricaoDetalhada){
 		$sql = MySql::conectar()->prepare(PainelSQL::cadastrarProduto());
-		return $sql->execute(array($nome,$quantidade, $descricao, $largura, $altura, $peso, $comprimento, $preco));
+		return $sql->execute(array($nome,$quantidade, $descricao,$largura, $altura, $peso, $comprimento, $preco, $precoDescnto, $desconto ,$descricaoDetalhada));
 
 	}
 	public static function insereImagem($lastId, $value)
@@ -281,9 +281,9 @@ class Painel
         $sql->execute(array($id_produto));
         return $sql->fetch(); 
     }
-	public static function atualizaProdutoPorId($nome, $descricao , $largura , $altura , $comprimento ,$peso, $quantidade ,$preco, $id) {
+	public static function atualizaProdutoPorId($nome, $descricao , $largura , $altura , $comprimento ,$peso, $quantidade ,$preco,$descricaoDetalhada , $id) {
 		$sql = MySql::conectar()->prepare(PainelSQL::atualizaProdutoPorId());
-		if ($sql->execute(array($nome, $descricao , $largura , $altura , $comprimento , $peso,$quantidade,$preco,$id)) == true)
+		if ($sql->execute(array($nome, $descricao , $largura , $altura , $comprimento , $peso,$quantidade,$preco,$descricaoDetalhada ,$id)) == true)
 			return true;
 		else
 			return false;
@@ -292,6 +292,13 @@ class Painel
 		$valor = str_replace('.','',$valor);
 		$valor = str_replace(',','.',$valor);
 		return $valor;
+	}
+	public static function insereDesconto($precoDesconto, $desconto, $id_produto){
+		$sql = MySql::conectar()->prepare(PainelSQL::insereDesconto());
+		if($sql->execute(array($precoDesconto, $desconto, $id_produto)) == true)
+			return true;
+		else
+			return false;
 	}
 
 }
