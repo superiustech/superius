@@ -1,93 +1,71 @@
-@import url('https://fonts.googleapis.com/css2?family=Montserrat&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;1,300;1,700&display=swap');
-@import url('https://fonts.googleapis.com/css?family=Montserrat:400,700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Red+Hat+Display:ital,wght@0,300;0,500;0,600;0,700;0,800;0,900;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 *{
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: montserrat;
-}
+    font-family: 'Red Hat Display';
+  }
 body{
-    background-color: #ebebeb;
+    background-color: #ededed;
 }
 
 /*HEADER*/
 
-/* Reset some default styles for consistency */
-body, h1, h2, h3, p, img, ul, li {
-    margin: 0;
-    padding: 0;
-    border: 0;
-  }
-  
-  header{
-    width: 100%;
-    justify-content: space-between;
-    background-color: #0f64f6;
-  }
-  /* Define general styles */
-  body {
-    font-family: Arial, sans-serif;
-  }
-  
-  .container {
-    max-width: 1500px;
-    margin: 0 auto;
-    padding: 10px;
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-  }
-  
-  .opcoes {
-    display: flex;
-    flex-direction: row;
-  }
-  
-  .opcoes a {
-    text-decoration: none;
-    margin-right: 0px;
-    color: #333;
-  }
-  
-  .finalizar-carrinho a {
-    text-decoration: none;
-    margin-right: 15px;
-    color: #ffffff;
-  }
-  
-  .fa-solid {
-    margin-right: 0px;
-  }
-  
-  /* Responsive styles */
-  @media screen and (max-width: 508px) {
-    .menu-icon {
-      display: block;
-    }
-    
-    .opcoes {
-      display: none;
-      flex-direction: column;
-      position: absolute;
-      top: 70px;
-      left: 0;
-      background-color: #f8f8f8;
-      width: 100%;
-      box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
-      padding: 10px;
-    }
-    
-    .opcoes.active {
-      display: flex;
-    }
-    
-    .finalizar-carrinho {
-      display: none;
-    }
-  }
-  
-
-
+header{
+  display: flex;
+  width: 100%;
+  border: 1px solid black;
+  margin: 0 auto;
+  justify-content: space-around;
+  align-items: center;
+  padding: 5px ;
+  box-shadow: 0px 0px 16px 0px rgba(0,0,0,0.75);
+  border: 0;
+}
+header nav{
+  width: 30%;
+  display: flex;
+  margin: 0 auto;
+  justify-content: space-around;
+}
+header .end-header{
+  display: flex;
+  align-items: center;
+  justify-content: space-around ;
+  width: 25%;
+}
+header .logo{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 25%;
+}
+.logo img{
+  width: 60px;
+  height: 60px;
+}
+header a{
+  font-size: 14px;
+  padding: 10px;
+  text-decoration: none;
+  color: #0658F6;
+  font-weight: 900;
+  transition: 1s;
+}
+header a:hover , header i:hover{
+  color: black;
+}
+header i , header i a{
+  color: #0658F6;
+  transition: 1s;
+}
+i span{
+  padding: 5px;
+  font-size: 14px;
+}
+header i{
+  font-size: 18px;
+}
 /*MEXE NA BOX DE ITEM*/
 
 .center{
@@ -107,16 +85,6 @@ h2{
 i{
     font-size:25px;
     width: 50px;
-}
-.logo{
-    width: 80px;
-    height: 80px;
-}
-.logo img{
-    transform: translate(-25%,-25%);
-    width: 200%;
-    height: 200%;
-
 }
 img{
     width: 100%;
@@ -164,9 +132,16 @@ img{
     max-width: 300px;
     margin: 20px;
     padding: 20px;
-    background-color: #ffffff;
+    background: rgb(255, 255, 255);
     transition: 0.3s;
   }
+  .esgotado  *{
+    opacity: 0.6;
+  }
+  .box-esgotado{
+    opacity: 1 !important;
+  }
+  .esgotado
   .boxes:hover{
     box-shadow: -1px -1px 45px -22px rgba(0,0,0,0.75);
   }
@@ -241,17 +216,27 @@ img{
     font-size: 14px;
     color: white;
   }
+  .box-esgotado{
+    background-color: #0f64f6;
+    width: 95%;
+    margin: 0 auto;
+    padding: 5px;
+    text-align: center;
+    border-radius: 10px;
+    position: relative;
+    z-index: 1;
+  }
+  .box-esgotado a{
+    opacity: 1;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 14px;
+    color: rgb(255, 255, 255);
+  }
+
 
   /* LANDING PAGE */
 
-  @import url('https://fonts.googleapis.com/css2?family=Montserrat&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;1,300;1,700&display=swap');
-  @import url('https://fonts.googleapis.com/css?family=Montserrat:400,700&display=swap');
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: montserrat;
-}
 .container-login{
     position: relative;
     width: 100%;

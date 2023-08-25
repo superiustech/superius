@@ -18,7 +18,7 @@
 	$data["itemId$index"] = $index;
 	$data["itemQuantity$index"] = $values;
 	$data["itemDescription$index"] = $produto['sNmProduto'];
-	$data["itemAmount$index"] = number_format($produto['dVlPreco'], 2, '.', '');
+	$data["itemAmount$index"] = number_format($produto['dVlPrecoDesconto'], 2, '.', '');
 	//$total += $preco;
 
 	$index++;

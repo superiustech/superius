@@ -17,7 +17,7 @@
         WHERE CEI.nCdImagem = 
 			(SELECT MIN(nCdImagem)
             FROM CONTROLE_ESTOQUE_IMAGEM
-            WHERE nCdProduto = CE.nCdProduto) AND CE.dQtItem > 0");
+            WHERE nCdProduto = CE.nCdProduto) /* AND CE.dQtItem > 0 */ ORDER BY dQtItem DESC");
 		$sql->execute();
 		return $sql->fetchAll();
     }
@@ -30,6 +30,9 @@
 		}
 		return $amount;
 		}else{return 0;}
+	}
+	public static function infoPorSessao(){
+	
 	}
 }
 ?>

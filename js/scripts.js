@@ -1,19 +1,23 @@
 $(function(){
 
 		
+	var hoverTimeout;
+
 	$('.boxes').hover(
-		
-		function (e) { 
-			$(this).find('.parcelamento').slideUp(); // Mostra o botão quando passa o mouse
-			$(this).find('.box-adicionar').slideDown();
-			e.preventDefault();
-
-		},
 		function (e) {
-			$(this).find('.box-adicionar').slideUp(); // Oculta o botão quando o mouse sai
-			$(this).find('.parcelamento').slideDown(); // Mostra o botão quando passa o mouse
-			e.preventDefault();
-
+			var _this = this;
+	
+			hoverTimeout = setTimeout(function () {
+				$(_this).find('.parcelamento').slideUp();
+				$(_this).find('.box-adicionar').slideDown();
+				e.preventDefault();
+			},100);
+		},
+		function () {
+			clearTimeout(hoverTimeout);
+	
+			$(this).find('.box-adicionar').slideUp();
+			$(this).find('.parcelamento').slideDown();
 		}
 	);
 	

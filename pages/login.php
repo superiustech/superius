@@ -44,7 +44,7 @@
     <div class="content-box">
     <div class="form-box">
 
-    <h2>Loginasdasd</h2>
+    <h2>Login loja</h2>
     <form method="post" class="form">
 
         <div class="input-box">

@@ -300,7 +300,11 @@ class Painel
 		else
 			return false;
 	}
-
+	public static function retornaClientePorId($id){
+		$sql = MySql::conectar()->prepare(PainelSQL::retornaClientePorId());
+		$sql->execute($id);
+		return $sql->fetch();
+	}
 }
 
 

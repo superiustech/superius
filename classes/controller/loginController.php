@@ -9,7 +9,7 @@ class loginController
         if(\Loja::logado() == false){
             \views\mainView::render('login.php');
         }else{
-            \views\mainView::render('finalizar.php');
+            \views\mainView::render('home.php');
         }
 
 	

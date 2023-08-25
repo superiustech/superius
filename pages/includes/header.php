@@ -10,15 +10,18 @@
 </head>
 <body>
 <header>
-  <div class="container">
-    <div class="logo"><img src="uploads/logobranca-sf.png" alt=""></div>
-    
-	  <a href="<?php echo INCLUDE_PATH ?>"><i class="fa-solid fa-house" style="color: #ffffff;"></i></a>
-
-    <div class="finalizar-carrinho">
-      <a href="<?php INCLUDE_PATH ?>finalizar"><i class="fa-solid fa-bag-shopping" style="color: #ffffff;"></i></a>
-      <a href="javascript:void(0)"><i class="fa-solid fa-truck" style="color: #ffffff;"></i>(<?php echo homeModel::retornaTotalCarrinho() ?>)</a>
+    <div class="logo"><img src="  uploads/logosfbranca.png" alt=""></div>
+    <nav>
+        <a href="<?php echo INCLUDE_PATH ?>">Home</a>
+        <a href="<?php echo INCLUDE_PATH ?>home">Loja</a>
+        <a href="<?php INCLUDE_PATH ?>">Sobre nós</a>
+        <a href="<?php INCLUDE_PATH ?>">Contato</a>
+    </nav>
+    <div class="end-header">
+      <i class="fa fa-user"><a href="<?php $_SESSION['nome'] ?? INCLUDE_PATH ?>login"><?php echo $_SESSION['nome'] ?? 'usuario';?></a></i>
+      <i class="fa fa-bag-shopping"><a href="<?php echo INCLUDE_PATH ?>finalizar">finalizar</a></i>
+      <a href="javascript:void(0)"><i class="fa fa-cart-shopping"><span><?php echo homeModel::retornaTotalCarrinho() ?></span></i></a>
+      
     </div>
-  </div>
-</header>
+ </header>
 

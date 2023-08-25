@@ -13,7 +13,7 @@
             foreach($itens as $prod => $values){
             $id_produto = $prod;;
             $produto = Loja::retornaProdutoPorId($id_produto);
-            $preco = $values * $produto['dVlPreco'];
+            $preco = $values * $produto['dVlPrecoDesconto'];
             $total += $preco;
         ?>
 

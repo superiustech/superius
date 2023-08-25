@@ -151,6 +151,9 @@ class PainelSQL{
     public static function insereDesconto(){
         return "UPDATE CONTROLE_ESTOQUE SET dVlPrecoDesconto = ? , dVlDesconto = ? WHERE nCdProduto = ?";
     }
+    public static function retornaClientePorId(){
+        return "SELECT * FROM CLIENTES WHERE nCdCliente = ?";
+    }
 }
 
 ?>
