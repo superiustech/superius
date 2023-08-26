@@ -91,15 +91,15 @@ if(isset($_POST['acao'])){
     </div>
     <div class="form-group">
         <label>Largura do Produto: </label>
-        <input type="number" value="0" step="5" name="largura" min="0" max="100">
+        <input type="number" value="0" step="1" name="largura" min="0" max="100">
     </div>
     <div class="form-group">
         <label>Altura do Produto: </label>
-        <input type="number" value="0" step="5" name="altura" min="0" max="100">
+        <input type="number" value="0" step="1" name="altura" min="0" max="100">
     </div>
     <div class="form-group">
         <label>Comprimento do Produto: </label>
-        <input type="number" value="0" step="5" name="comprimento" min="0" max="100">
+        <input type="number" value="0" step="1" name="comprimento" min="0" max="100">
     </div>
     <div class="form-group">
         <label> Selecione as imagens: </label>

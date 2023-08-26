@@ -1,4 +1,11 @@
 
+<div class="landing-box">
+    <div class="img-landing">
+    <img src="uploads/amazonspeaker.png">
+    </div>
+    <div class="content-box">
+    </div>
+    </div>
 
 <div class="center">
 
@@ -18,7 +25,7 @@ $precoPix = Loja::convertMoney($precoPix);
     <?php if($prod['sDsImagem'] == ''){?>
             <i class="fa fa-pencil"></i> 
             <?php }else{?>
-        <img src="<?php echo INCLUDE_PATH_PAINEL.'uploads/'.$prod['sDsImagem']?>" alt="">
+        <a href="<?php INCLUDE_PATH ?>visualizar-produto?id=<?php echo $prod['nCdProduto']; ?>"><img src="<?php echo INCLUDE_PATH_PAINEL.'uploads/'.$prod['sDsImagem']?>" alt=""></a>
             <?php }?>
 </div>
 <div class="boxes-content">

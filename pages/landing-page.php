@@ -1,4 +1,4 @@
-<!-- <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -8,21 +8,20 @@
     <title>Login Painel</title>
 </head>
 <body>
-    <div class="largeBox">
-    
-<div class="container-login">
-    <div class="img-box">
-    <img src="<?php echo INCLUDE_PATH_PAINEL ?>uploads/sentadologin.png" id="img2">
+    <div class="landing-box">
+    <div class="img-landing">
+    <img src="uploads/bginicial.png">
     </div>
     <div class="content-box">
-    <div class="form-box">
+    </div>
+    </div>
 
-    <h2>Lorem ipsum dolor sit amet consectetur adipisicing elit. Obcaecati dolorem eligendi nobis cumque molestiae magni itaque, voluptas esse mollitia cum harum inventore, beatae accusamus fuga temporibus maiores, deserunt animi. Sunt.     </h2>
-
-
-    </form>
+    <div class="opcoes">
+        <div class="item w50"><img src="uploads/card-notebook.png" alt=""></div>
+        <div class="item w50"><img src="uploads/applewatch.png" alt=""></div>
+    </div>
 </body>
 </html>
 
 </body>
-</html> -->
+</html>

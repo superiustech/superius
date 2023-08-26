@@ -14,6 +14,9 @@ class LojaSQL
     public static function retornaProdutoPorId(){
         return "SELECT * FROM CONTROLE_ESTOQUE WHERE nCdProduto = ?";
     }
+    public static function retornaUmaImagem(){
+        return "SELECT * FROM CONTROLE_ESTOQUE_IMAGEM WHERE nCdProduto = ?";
+    }
 }
 
 ?>

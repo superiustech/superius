@@ -7,7 +7,6 @@
 	$data['reference'] = uniqid();
 	$index = 1;
 	$itemsCarrinho = $_SESSION['carrinho'];
-
 	$index = 1;
 	$total =0;  
 	$itens = $_SESSION['carrinho']; 

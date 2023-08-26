@@ -10,7 +10,7 @@
 </head>
 <body>
 <header>
-    <div class="logo"><img src="  uploads/logosfbranca.png" alt=""></div>
+    <div class="logo"><img src="  uploads/logoazul-sf.png" alt=""></div>
     <nav>
         <a href="<?php echo INCLUDE_PATH ?>">Home</a>
         <a href="<?php echo INCLUDE_PATH ?>home">Loja</a>
