@@ -305,6 +305,19 @@ class Painel
 		$sql->execute($id);
 		return $sql->fetch();
 	}
+	public static function enviarMensagem($id, $mensagem) {
+		$sql = MySql::conectar()->prepare(PainelSQL::enviarMensagem());
+		if ($sql->execute(array($id, $mensagem))) {
+			return true; // Sucesso na inserção
+		} else {
+			return false; // Falha na inserção
+		}
+	}
+	public static function retornaMensagem() {
+		$sql = MySql::conectar()->prepare(PainelSQL::retornaMensagem());
+		$sql->execute(array());
+		return $sql->fetchAll();
+	}
 }
 
 

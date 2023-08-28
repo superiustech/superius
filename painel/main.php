@@ -75,7 +75,7 @@ if (!isset($_SESSION['adminImg'])) {
     <header>
     <div class="center">
         <div class="menu-btn">
-            <i class="fa-solid fa-bars" id="menuBtn" style="color: #ffffff;"></i>
+            <a href="<?php echo INCLUDE_PATH_PAINEL ?>chat-online"><i class="fa-solid fa-comment" id="menuBtn" style="color: #ffffff;"></i></a>
         </div><!-- menu-btn -->
         <div class="home logout">
         <a href="<?php INCLUDE_PATH_PAINEL ?>voltar"><i class="fa-solid fa-house" style="color: #ffffff;"></i></a>
@@ -103,6 +103,7 @@ if (!isset($_SESSION['adminImg'])) {
 <?php Painel::loadJs(array('ajax.js') , ('gerenciar-clientes'))?>
 <?php Painel::loadJs(array('ajax.js') , ('cadastrar-clientes'))?>
 <?php Painel::loadJs(array('ajax.js') , ('editar-clientes'))?>
+<?php Painel::loadJs(array('ajax.js') , ('chat-online'))?>
 <?php Painel::loadJs(array('controleFinanceiro.js') , ('editar-clientes'))?>
 <?php Painel::loadJs(array('helperMask.js') , ('editar-produtos'))?>
 <?php Painel::loadJs(array('jquery.maskMoney.js') , ('editar-produtos'))?>

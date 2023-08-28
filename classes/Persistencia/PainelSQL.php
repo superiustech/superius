@@ -154,6 +154,17 @@ class PainelSQL{
     public static function retornaClientePorId(){
         return "SELECT * FROM CLIENTES WHERE nCdCliente = ?";
     }
+    public static function enviarMensagem() {
+        return "INSERT INTO CHAT_ADMIN (nCdUsuario, sDsMensagem) VALUES (?, ?);";
+    }
+    public static function retornaMensagem() {
+        return "SELECT CA.*, UA.*, CG.* FROM CHAT_ADMIN CA
+                INNER JOIN USUARIOS_ADMIM UA ON CA.nCdUsuario = UA.nCdUsuario
+                INNER JOIN CARGO CG ON CG.nCdCargo = UA.nCdCargo
+                ORDER BY nCdChat DESC
+                LIMIT 10";
+    }
+    
 }
 
-?>
+?>  
