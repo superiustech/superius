@@ -5,7 +5,7 @@ use \views\mainView;
 class homeController
 {
     public function index(){
-	
+		
 		if(isset($_GET['adicionar-carrinho'])){
 			$id_produto = (int)$_GET['adicionar-carrinho'];
 			if(!isset($_SESSION['carrinho'])){
