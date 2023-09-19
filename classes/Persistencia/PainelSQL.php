@@ -51,8 +51,14 @@ class PainelSQL{
     public static function cadastrarProduto(){
         return "INSERT INTO CONTROLE_ESTOQUE VALUES (null, ?,?,?,?,?,?,?,?,?,?,?)"; 
     }
+    public static function cadastrarServico(){
+        return "INSERT INTO CONTROLE_SERVICOS VALUES (null, ?,?,?,?,?,?)"; 
+    }
     public static function insereImagem(){
         return "INSERT INTO CONTROLE_ESTOQUE_IMAGEM VALUES (null, ?,?)";
+    }
+    public static function insereImagemServico(){
+        return "INSERT INTO CONTROLE_SERVICOS_IMAGEM VALUES (null, ?,?)";
     }
     public static function insereCliente(){
         return "INSERT INTO CLIENTES VALUES (null, ?,?,?,?,?,?,?)";
@@ -70,6 +76,28 @@ class PainelSQL{
         ) CEI_MIN ON CE.nCdProduto = CEI_MIN.nCdProduto
         LEFT JOIN CONTROLE_ESTOQUE_IMAGEM CEI ON CEI.nCdProduto = CE.nCdProduto AND CEI.nCdImagem = CEI_MIN.minImagem
         WHERE CE.dQtItem > 0".$query;
+    }
+    public static function carregarServicoComFiltro($query){
+        return "SELECT CE.*, COALESCE(CEI.nCdImagem, '') AS nCdImagem, COALESCE(CEI.sDsImagem, '') AS sDsImagem
+        FROM CONTROLE_SERVICOS CE
+        LEFT JOIN (
+            SELECT nCdServico, nCdImagem AS minImagem
+            FROM CONTROLE_SERVICOS_IMAGEM
+            GROUP BY nCdServico
+        ) CEI_MIN ON CE.nCdServico = CEI_MIN.nCdServico
+        LEFT JOIN CONTROLE_SERVICOS_IMAGEM CEI ON CEI.nCdServico = CE.nCdServico AND CEI.nCdImagem = CEI_MIN.minImagem
+        WHERE bFlAtivo = 1".$query;
+    }
+    public static function carregarServicoComFiltroDesativado($query){
+        return "SELECT CE.*, COALESCE(CEI.nCdImagem, '') AS nCdImagem, COALESCE(CEI.sDsImagem, '') AS sDsImagem
+        FROM CONTROLE_SERVICOS CE
+        LEFT JOIN (
+            SELECT nCdServico, nCdImagem AS minImagem
+            FROM CONTROLE_SERVICOS_IMAGEM
+            GROUP BY nCdServico
+        ) CEI_MIN ON CE.nCdServico = CEI_MIN.nCdServico
+        LEFT JOIN CONTROLE_SERVICOS_IMAGEM CEI ON CEI.nCdServico = CE.nCdServico AND CEI.nCdImagem = CEI_MIN.minImagem
+        WHERE bFlAtivo = 0".$query;
     }
     
     public static function carregarProdutosFalta(){
@@ -96,11 +124,34 @@ class PainelSQL{
         WHERE CF.nCdCliente = ? AND CF.bFlStatus = ? 
         ORDER BY CF.tDtVencimento ASC";
     }
-    public static function retornaTodoFinanceiro($query){
+    public static function  retornaTodoFinanceiro($query){
         return "SELECT * FROM CONTROLE_FINANCEIRO CF 
         INNER JOIN CLIENTES CL ON CL.nCdCliente = CF.nCdCliente
         $query AND bFlStatus = ?
         ORDER BY CF.tDtVencimento ASC";
+    }
+    public static function  retornaAgendaServico($query){
+        return "SELECT * FROM CONTROLE_SERVICOS_AGENDA CSA
+        LEFT JOIN CLIENTES CL ON CL.nCdCliente = CSA.nCdCliente
+        LEFT JOIN CONTROLE_SERVICOS CSE ON CSA.nCdServico = CSE.nCdServico
+        WHERE CSA.sDsStatus = ? AND CSA.nCdPrestador = ?
+        ORDER BY CSA.tDtServico ASC;";
+    }
+    public static function verificaAgenda(){
+        return "SELECT * FROM CONTROLE_SERVICOS_REALIZAR WHERE nCdAgendaServico = ?";
+    }
+    public static function atualizaStatusServico(){
+        return "UPDATE CONTROLE_SERVICOS_AGENDA SET sDsStatus = ? WHERE nCdAgendaServico = ?" ;
+    }
+    public static function deletaAgendarServico(){
+        return "DELETE FROM CONTROLE_SERVICOS_AGENDA WHERE nCdAgendaServico = ?" ;
+    }
+    public static function  retornaAgendaServicoPorId(){
+        return "SELECT * FROM CONTROLE_SERVICOS_AGENDA CSA
+        LEFT JOIN CLIENTES CL ON CL.nCdCliente = CSA.nCdCliente
+        LEFT JOIN CONTROLE_SERVICOS CSE ON CSA.nCdServico = CSE.nCdServico
+        WHERE CSA.nCdAgendaServico = ?
+        ORDER BY CSA.tDtServico ASC;";
     }
     public static function retornaTodoFinanceiroSemStatus($query){
         return "SELECT * FROM CONTROLE_FINANCEIRO CF 
@@ -127,26 +178,50 @@ class PainelSQL{
     public static function verificaEstoque(){
         return "SELECT * FROM CONTROLE_ESTOQUE WHERE dQtItem = 0";
     }
+    public static function verificaServicos(){
+        return "SELECT * FROM CONTROLE_SERVICOS WHERE bFlAtivo = 0";
+    }
     public static function deletarProduto(){
         return "DELETE FROM CONTROLE_ESTOQUE WHERE nCdProduto = ?";
+    }
+    public static function deletarServico(){
+        return "DELETE FROM CONTROLE_SERVICOS WHERE nCdServico = ?";
     }
     public static function deletarImagemProduto(){
         return "DELETE FROM CONTROLE_ESTOQUE_IMAGEM WHERE nCdProduto = ?";
     }
+    public static function deletarImagemServico(){
+        return "DELETE FROM CONTROLE_SERVICOS_IMAGEM WHERE nCdServico = ?";
+    }
     public static function deletarImagemPorId(){
         return "DELETE FROM CONTROLE_ESTOQUE_IMAGEM WHERE nCdImagem = ?";
+    }
+    public static function deletarImagemServicoPorId(){
+        return "DELETE FROM CONTROLE_SERVICOS_IMAGEM WHERE nCdImagem = ?";
     }
     public static function retornaImagem(){
         return "SELECT * FROM CONTROLE_ESTOQUE_IMAGEM WHERE nCdProduto = ?";
     }
+    public static function retornaImagemServico(){
+        return "SELECT * FROM CONTROLE_SERVICOS_IMAGEM WHERE nCdServico = ?";
+    }
     public static function retornaImagemPorId(){
         return "SELECT sDsImagem FROM CONTROLE_ESTOQUE_IMAGEM WHERE nCdImagem = ?";
+    }
+    public static function retornaImagemServicoPorId(){
+        return "SELECT sDsImagem FROM CONTROLE_SERVICOS_IMAGEM WHERE nCdImagem = ?";
     }
     public static function retornaProdutoPorId(){
         return "SELECT * FROM CONTROLE_ESTOQUE WHERE nCdProduto = ?";
     }
+    public static function retornaServicoPorId(){
+        return "SELECT * FROM CONTROLE_SERVICOS WHERE nCdServico = ?";
+    }
     public static function atualizaProdutoPorId(){
         return "UPDATE CONTROLE_ESTOQUE SET sNmProduto = ?, sDsProduto = ?, sDsLargura = ?, sDsAltura = ?, sDsComprimento = ?, sDsPeso = ? , dQtItem = ? , dVlPreco = ?  , sDsProdutoDetalhada = ? WHERE nCdProduto = ?";
+    }
+    public static function atualizaServicoPorId(){
+        return "UPDATE CONTROLE_SERVICOS SET sDsNome = ?, sDsServico = ?, sDsServicoDetalhada = ?, sDsPreco = ?, sNmCategoria = ?, bFlAtivo = ?  WHERE nCdServico = ?";
     }
     public static function insereDesconto(){
         return "UPDATE CONTROLE_ESTOQUE SET dVlPrecoDesconto = ? , dVlDesconto = ? WHERE nCdProduto = ?";
@@ -162,7 +237,13 @@ class PainelSQL{
                 INNER JOIN USUARIOS_ADMIM UA ON CA.nCdUsuario = UA.nCdUsuario
                 INNER JOIN CARGO CG ON CG.nCdCargo = UA.nCdCargo
                 ORDER BY nCdChat DESC
-                LIMIT 10";
+                LIMIT 25";
+    }
+    public static function retornaProdutoComFiltro($query){
+        return "SELECT * FROM PEDIDOS $query";
+    }
+    public static function aceitaServico(){
+        return "INSERT INTO CONTROLE_SERVICOS_REALIZAR (nCdAgendaServico , nCdServico , nCdUsuario , sDsStatus) VALUES (?,?,?,1);";
     }
     
 }

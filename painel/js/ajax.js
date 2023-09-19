@@ -71,9 +71,6 @@ $('#btn-chat').click(function(e) {
        atualizarListaMensagens();
     });
 });
-
-
-
 setInterval(() => {
     atualizarListaMensagens();
 }, 2000);

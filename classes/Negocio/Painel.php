@@ -151,9 +151,19 @@ class Painel
 		return $sql->execute(array($nome,$quantidade, $descricao,$largura, $altura, $peso, $comprimento, $preco, $precoDescnto, $desconto ,$descricaoDetalhada));
 
 	}
+	public static function cadastrarServico($nome,$descricao,$descricaoDetalhada, $preco, $categoria,$bFlAtivo){
+		$sql = MySql::conectar()->prepare(PainelSQL::cadastrarServico());
+		return $sql->execute(array($nome,$descricao,$descricaoDetalhada, $preco, $categoria,$bFlAtivo));
+
+	}
 	public static function insereImagem($lastId, $value)
 	{
 		$sql = MySql::conectar()->prepare(PainelSQL::insereImagem());
+		$sql->execute(array($lastId, $value));
+	}
+	public static function insereImagemServico($lastId, $value)
+	{
+		$sql = MySql::conectar()->prepare(PainelSQL::insereImagemServico());
 		$sql->execute(array($lastId, $value));
 	}
 	public static function insereCliente($nome,$apelido,$email,$senha,$tipo,$documento,$imagem){
@@ -184,6 +194,16 @@ class Painel
 	}
 	public static function carregarProdutosComFiltro($query){
 		$sql = MySql::conectar()->prepare(PainelSQL::carregarProdutosComFiltro($query));
+		$sql->execute();
+		return $sql->fetchAll();
+	}
+	public static function carregarServicoComFiltroDesativado($query){
+		$sql = MySql::conectar()->prepare(PainelSQL::carregarServicoComFiltroDesativado($query));
+		$sql->execute();
+		return $sql->fetchAll();
+	}
+	public static function carregarServicoComFiltro($query){
+		$sql = MySql::conectar()->prepare(PainelSQL::carregarServicoComFiltro($query));
 		$sql->execute();
 		return $sql->fetchAll();
 	}
@@ -221,6 +241,21 @@ class Painel
 			$sql->execute();
 			return $sql->fetchAll();	
 			}
+			public static function retornaAgendaServico($query , $bFlStatus, $usuario_id ){
+				$sql = MySql::conectar()->prepare(PainelSQL::retornaAgendaServico($query));
+				$sql->execute(array($bFlStatus,$usuario_id));
+				return $sql->fetchAll();	
+				}		
+				public static function retornaAgendaServicoPorId($agenda_id){
+					$sql = MySql::conectar()->prepare(PainelSQL::retornaAgendaServicoPorId());
+					$sql->execute(array($agenda_id));
+					return $sql->fetch();	
+					}
+	public static function retornaProdutoComFiltro($query){
+		$sql = MySql::conectar()->prepare(PainelSQL::retornaProdutoComFiltro($query));
+		$sql->execute();
+		return $sql->fetchAll();	
+	}
 	public static function atualizarStatusFinanceiro($nCdControleFinanceiro){
 		$sql = MySql::conectar()->prepare(PainelSQL::atualizarStatusFinanceiro());
 		if($sql->execute(array($nCdControleFinanceiro)) == true)
@@ -245,9 +280,29 @@ class Painel
 		$sql->execute();
 		return $sql;
 	}
+	public static function verificaServicos(){
+		$sql = MySql::conectar()->prepare(PainelSQL::verificaServicos());
+		$sql->execute();
+		return $sql;
+	}
 	public static function deletarProduto($produto_id){
 		$sql = MySQl::conectar()->prepare(PainelSQL::deletarProduto());
 		if($sql->execute(array($produto_id)) == true)
+			return true;
+		else	
+			return false;
+	}
+	
+	public static function deletarServico($servico_id){
+		$sql = MySQl::conectar()->prepare(PainelSQL::deletarServico());
+		if($sql->execute(array($servico_id)) == true)
+			return true;
+		else	
+			return false;
+	}
+	public static function deletarImagemServico($servico_id){
+		$sql = MySQl::conectar()->prepare(PainelSQL::deletarImagemServico());
+		if($sql->execute(array($servico_id)) == true)
 			return true;
 		else	
 			return false;
@@ -266,8 +321,20 @@ class Painel
 		else	
 			return false;
 	}
+	public static function deletarImagemServicoPorId($idImagem){
+		$sql = MySQl::conectar()->prepare(PainelSQL::deletarImagemServicoPorId());
+		if($sql->execute(array($idImagem)) == true)
+			return true;
+		else	
+			return false;
+	}
 	public static function retornaImagem($produto_id){
 		$sql = MySql::conectar()->prepare(PainelSQL::retornaImagem());
+		if ($sql->execute(array($produto_id)) == true)
+			return $sql->fetchAll();
+	}
+	public static function retornaImagemServico($produto_id){
+		$sql = MySql::conectar()->prepare(PainelSQL::retornaImagemServico());
 		if ($sql->execute(array($produto_id)) == true)
 			return $sql->fetchAll();
 	}
@@ -276,14 +343,31 @@ class Painel
 		if ($sql->execute(array($id_imagem)) == true)
 			return $sql->fetchAll();
 	}
+	public static function retornaImagemServicoPorId($id_imagem){
+		$sql = MySql::conectar()->prepare(PainelSQL::retornaImagemServicoPorId());
+		if ($sql->execute(array($id_imagem)) == true)
+			return $sql->fetchAll();
+	}
 	public static function retornaProdutoPorId($id_produto) {
         $sql = MySql::conectar()->prepare(PainelSQL::retornaProdutoPorId());
+        $sql->execute(array($id_produto));
+        return $sql->fetch(); 
+    }
+	public static function retornaServicoPorId($id_produto) {
+        $sql = MySql::conectar()->prepare(PainelSQL::retornaServicoPorId());
         $sql->execute(array($id_produto));
         return $sql->fetch(); 
     }
 	public static function atualizaProdutoPorId($nome, $descricao , $largura , $altura , $comprimento ,$peso, $quantidade ,$preco,$descricaoDetalhada , $id) {
 		$sql = MySql::conectar()->prepare(PainelSQL::atualizaProdutoPorId());
 		if ($sql->execute(array($nome, $descricao , $largura , $altura , $comprimento , $peso,$quantidade,$preco,$descricaoDetalhada ,$id)) == true)
+			return true;
+		else
+			return false;
+	}
+	public static function atualizaServicoPorId($nome,$descricao,$descricaoDetalhada, $preco, $categoria, $bFlAtivo, $id) {
+		$sql = MySql::conectar()->prepare(PainelSQL::atualizaServicoPorId());
+		if ($sql->execute(array($nome,$descricao,$descricaoDetalhada, $preco, $categoria, $bFlAtivo, $id)) == true)
 			return true;
 		else
 			return false;
@@ -317,6 +401,40 @@ class Painel
 		$sql = MySql::conectar()->prepare(PainelSQL::retornaMensagem());
 		$sql->execute(array());
 		return $sql->fetchAll();
+	}
+	public static function aceitaServico($servico_id, $agenda_id,$usuario_id){
+		$sql = MySql::conectar()->prepare(PainelSQL::aceitaServico());
+		if ($sql->execute(array($servico_id, $agenda_id, $usuario_id)) == true){
+			return true;
+		}else{
+			return false;
+		}
+	}
+	public static function verificaAgenda($agenda_id){
+		$sql = MySql::conectar()->prepare(PainelSQL::verificaAgenda());
+		$sql->execute(array($agenda_id));
+		if ($sql->rowCount() >= 1)
+			return true;
+		else
+			return false;
+	}
+	public static function atualizaStatusServico($status, $agenda_id){
+		$sql = MySql::conectar()->prepare(PainelSQL::atualizaStatusServico());
+		if($sql->execute(array($status, $agenda_id)) == true){
+			return true;
+		}else{
+			return false;
+		}
+		
+	}	
+	public static function deletaAgendarServico($agenda_id){
+		$sql = MySql::conectar()->prepare(PainelSQL::deletaAgendarServico());
+		if($sql->execute(array($agenda_id)) == true){
+			return true;
+		}else{
+			return false;
+		}
+		
 	}
 }
 

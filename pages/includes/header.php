@@ -6,7 +6,7 @@
 	<link rel="stylesheet" href="<?php echo INCLUDE_PATH ?>css/font-awesome.min.css">
 	<link rel="stylesheet" href="<?php echo INCLUDE_PATH ?>css/style.css">
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/zebra_datepicker@latest/dist/css/default/zebra_datepicker.min.css">
-    <script src="https://kit.fontawesome.com/b534f9c505.js" crossorigin="anonymous"></script>   
+    <script src="https://kit.fontawesome.com/b534f9c505.js" crossorigin="anonymous"></script>  
 </head>
 <body>
 <header>
@@ -14,7 +14,7 @@
     <nav>
         <a href="<?php echo INCLUDE_PATH ?>">Home</a>
         <a href="<?php echo INCLUDE_PATH ?>home">Loja</a>
-        <a href="<?php INCLUDE_PATH ?>">Sobre nós</a>
+        <a href="<?php INCLUDE_PATH ?>servicos">Serviços</a>
         <a href="<?php INCLUDE_PATH ?>">Contato</a>
     </nav>
     <div class="end-header">

@@ -278,6 +278,7 @@ input[type=submit]{
 .boxes .boxes-topo img{
   width: 100%;
 }
+
 .form-group label{
   font-weight: normal;
   margin-left: 10px;
@@ -505,6 +506,20 @@ h3 a{
   align-items:start;
   justify-content: space-around;
 }
+#boxes-pedidos{
+  width: 220px;
+}
+.container-pedidos{
+  display: flex;
+  width: 100%;
+  gap: 10px;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+  flex-wrap: wrap;
+  
+}
+
 /* CONTROLE-FINANCEIRO */
 
 .table-header{

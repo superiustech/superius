@@ -15,6 +15,18 @@ if(isset($_POST['acao']) && $_POST['acao'] == "Buscar"){
 
 $pendentes = Painel::retornaTodoFinanceiroSemStatus($query);
 
+if(isset($_GET['agenda']) && isset($_GET['servico'])){
+    $agenda_id = $_GET['agenda'];
+    $servico_id = $_GET['servico'];
+    Painel::atualizaStatusServico(2 , $agenda_id);
+}
+
+if(isset($_GET['deletar']) && isset($_GET['servico'])){
+    $agenda_id = $_GET['deletar'];
+    $servico_id = $_GET['servico'];
+    Painel::deletaAgendarServico($agenda_id);
+}
+
 ?>
 
 <form method="post">
@@ -37,30 +49,19 @@ $pendentes = Painel::retornaTodoFinanceiroSemStatus($query);
     <h3>Pagamentos pendentes - <?php echo NOME_EMPRESA ?></h3> 
 </div>
 
-
-<?php     if (isset($_GET['pago'])){
-        $nCdControleFinanceiro = $_GET['pago'];
-        // $dataAtual = date("Y-m-d");
-        if (Painel::atualizarStatusFinanceiro($nCdControleFinanceiro) == true){
-            Painel::alert('sucesso', ' O pagamento foi quitado com sucesso!');
-        }else{
-            Painel::alert('erro', 'Houve algum erro no processamento!');
-        }
-    }
-    
-?>
 <div class="gerar-pdf" style="margin: 20px 20px;"><a target="blank" class="btn pdf" href="<?php echo INCLUDE_PATH_PAINEL ?>gerar-pdf.php?pagamentos=pendentes"pa><i class="fa fa-envelope"></i>  Gerar PDF</a></div>
+
 
 
 <div class="wrapper">
     <table class="table-header">
         <tr>
-            <td>Nome do pagamento</td>
+            <td>Nome do Serviço</td>
             <td>Cliente</td>
             <td>Valor</td>
-            <td>Venciemento</td>
-            <td>Enviar e-mail</td>
-            <td>Marcar como pago</td>
+            <td>Data serviço</td>
+            <td>Rejeitar serviço</td>
+            <td>Aceitar serviço</td>
         </tr>
     </table>
 </div>
@@ -76,23 +77,22 @@ $query = "";
     }
 
 $status = 0;
-$pendentes = Painel::retornaTodoFinanceiro($status,$query);
+$pendentes = Painel::retornaAgendaServico($query, 1 , $_SESSION['nCdUsuario']);
 
 foreach ($pendentes as $value) {    
 $style = "";
-if(strtotime(date('Y-m-d')) >= strtotime($value['tDtVencimento'])){
+if(strtotime(date('Y-m-d')) >= strtotime($value['tDtServico'])){
     $style = 'style="background-color: #ff2b2b;"';
 } ?>
-
 <div class="wrapper">
     <table>
         <tr <?php echo $style;?>>
-            <td> <?php echo $value['sNmControle']; ?></td>
-            <td><?php echo $value['sDsApelido']; ?></td>
-            <td><?php echo $value['sDsValor']; ?></td>
-            <td><?php echo date('d/m/Y',strtotime($value['tDtVencimento'])); ?></td>
-            <td><a style="background-color: orange;" class="btn"   href="<?php echo INCLUDE_PATH_PAINEL?>"><i class="fa fa-envelope"></i> E-mail</a></td>
-            <td><a style="background-color: #00bfa5;" class="btn"   href="<?php echo INCLUDE_PATH_PAINEL?>visualizar-pagamentos?id=<?php echo $value['nCdCliente']?> &pago=<?php echo $value['nCdControleFinanceiro']?>"><i class="fa-solid fa-check"></i> Pago</a></td>
+            <td> <?php echo $value['sDsNome']; ?></td>
+            <td><?php echo $value['sNmCliente']; ?></td>
+            <td><?php echo $value['sDsPreco']; ?></td>
+            <td><?php echo date('d/m/Y',strtotime($value['tDtServico'])); ?></td>
+            <td><a style="background-color: orange;" class="btn"   href="<?php echo INCLUDE_PATH_PAINEL?>visualizar-pagamentos?servico=<?php echo $value['nCdServico']?> &deletar=<?php echo $value['nCdAgendaServico']?>"><i class="fa fa-times"></i> Cancelar </a></td>
+            <td><a style="background-color: #00bfa5;" class="btn"   href="<?php echo INCLUDE_PATH_PAINEL?>visualizar-pagamentos?servico=<?php echo $value['nCdServico']?> &agenda=<?php echo $value['nCdAgendaServico']?>"><i class="fa-solid fa-check"></i> Pago </a></td>
         </tr>
     </table>
 </div>
@@ -105,38 +105,41 @@ if(strtotime(date('Y-m-d')) >= strtotime($value['tDtVencimento'])){
 
 <div class="title-content">
     <i class="fa-solid fa-pencil" style="color: #1f71ff;"></i>
-    <h3>Pagamentos pendentes - <?php echo NOME_EMPRESA ?></h3> 
+    <h3>Pagamentos concluidos - <?php echo NOME_EMPRESA ?></h3> 
 </div>
 <div class="gerar-pdf" style="margin: 20px 20px;"><a target="blank" class="btn pdf" href="<?php echo INCLUDE_PATH_PAINEL ?>gerar-pdf.php?pagamentos=concluidos"><i class="fa fa-envelope"></i>  Gerar PDF</a></div>
+
 
 <div class="wrapper">
     <table class="table-header">
         <tr>
-            <td>Nome do pagamento</td>
+            <td>Nome do Serviço</td>
             <td>Cliente</td>
             <td>Valor</td>
-            <td>Venciemento</td>
+            <td>Data serviço</td>
+            <td>Rejeitar serviço</td>
+            <td>Aceitar serviço</td>
         </tr>
     </table>
 </div>
-
 <?php 
 
-$status = 1;
-$pendentes = Painel::retornaTodoFinanceiro($status,$query);
-foreach ($pendentes as $value) {    
-if(strtotime(date('Y-m-d')) >= strtotime($value['tDtVencimento'])){
+$status = 2;
+$pendentes = Painel::retornaAgendaServico($query, $status , $_SESSION['nCdUsuario']);foreach ($pendentes as $value) {    
+if(strtotime(date('Y-m-d')) >= strtotime($value['tDtServico'])){
     $style = 'style="background-color: #ff2b2b;"';
 } ?>
 
 <div class="wrapper">
     <table>
-        <tr>
-            <td> <?php echo $value['sNmControle']; ?></td>
-            <td><?php echo $value['sDsApelido']; ?></td>
-            <td><?php echo $value['sDsValor']; ?></td>
-            <td><?php echo date('d/m/Y',strtotime($value['tDtVencimento'])); ?></td>
-         </tr>
+        <tr <?php echo $style;?>>
+            <td> <?php echo $value['sDsNome']; ?></td>
+            <td><?php echo $value['sNmCliente']; ?></td>
+            <td><?php echo $value['sDsPreco']; ?></td>
+            <td><?php echo date('d/m/Y',strtotime($value['tDtServico'])); ?></td>
+            <td><a style="background-color: orange;" class="btn"   href="<?php echo INCLUDE_PATH_PAINEL?>"><i class="fa fa-envelope"></i> Rejeitar</a></td>
+            <td><a style="background-color: #00bfa5;" class="btn"   href="<?php echo INCLUDE_PATH_PAINEL?>agenda-servicos?servico=<?php echo $value['nCdServico']?> &agenda=<?php echo $value['nCdAgendaServico']?>"><i class="fa-solid fa-check"></i> Aceitar</a></td>
+        </tr>
     </table>
 </div>
 

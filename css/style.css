@@ -696,7 +696,6 @@ td a{
 }
 .ulcontainer{
   margin-top: 20px;
-
   width: 700px;
   margin: 0 auto;
 }
@@ -810,3 +809,9 @@ ul.slider-arrow li:hover {
   }
 }
 
+.img{
+  width: 100px;
+  height: 100px;
+  border-radius: 50px;
+  background-color: #000000;
+}

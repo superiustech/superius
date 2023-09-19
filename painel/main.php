@@ -56,7 +56,7 @@ if (!isset($_SESSION['adminImg'])) {
 
         <h2>Controle Financeiro</h2>
         <a <?php selecionadoMenu('visualizar-pagamentos'); ?> href="<?php INCLUDE_PATH_PAINEL ?>visualizar-pagamentos">Visualizar Pagamentos</a>
-
+        <a <?php selecionadoMenu('visualizar-pedidos'); ?> href="<?php INCLUDE_PATH_PAINEL ?>visualizar-pedidos">Visualizar Pedidos</a>
 
         <!-- Controle Estoque -->
         <h2>Controle Estoque</h2>
@@ -65,10 +65,15 @@ if (!isset($_SESSION['adminImg'])) {
         <a <?php selecionadoMenu('editar-produtos'); ?> href="<?php INCLUDE_PATH_PAINEL ?>editar-produtos">Editar Produtos</a>
         <a <?php selecionadoMenu('adicionar-descontos'); ?> href="<?php INCLUDE_PATH_PAINEL ?>adicionar-descontos">Adicionar Descontos</a>
 
-        <!-- Controle Estoque  -->
-
-
+        <!-- Serviços  -->
+        <h2>Serviços</h2>
+        <a <?php selecionadoMenu('agenda-servicos'); ?> href="<?php INCLUDE_PATH_PAINEL ?>agenda-servicos">Agenda de Serviços</a>
+        <a <?php selecionadoMenu('cadastrar-servicos'); ?> href="<?php INCLUDE_PATH_PAINEL ?>cadastrar-servicos">Cadastrar Serviço</a>
+        <a <?php selecionadoMenu('listar-servicos'); ?> href="<?php INCLUDE_PATH_PAINEL ?>listar-servicos">Listar Serviços</a>
+        <a <?php selecionadoMenu('editar-servicos'); ?> href="<?php INCLUDE_PATH_PAINEL ?>editar-servicos">Editar Serviços</a>
         </div><!-- itens menu -->
+        
+        
         
     </div><!-- menu -->
    

@@ -46,7 +46,7 @@
     <ul>
       <li>Esse produto é novo!</li>
       <li>As imagens dos produtos e/ou seus componentes são meramente ilustrativos, exceto quando indicado o contrário no próprio anúncio;</li>
-      <li>Este item foi adquirido pelo MeuGameUsado, porém o item é 100% novo e LACRADO.</li>
+      <li>Este item foi adquirido pela Superius Tech, porém o item é 100% novo e LACRADO.</li>
       <li>Item NUNCA aberto, NOVO de FÁBRICA.</li>
     </ul></div>
 </div>
