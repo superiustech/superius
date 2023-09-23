@@ -25,9 +25,9 @@ if(isset($_GET['agenda']) && isset($_GET['servico'])){
 
         if(Painel::verificaAgenda($agenda_id) == false){
             // já existe , não inserir
-            Painel::atualizaStatusServico(1 , $agenda_id);
+            Painel::atualizaStatusServicoAgenda(1 , $_SESSION['nCdUsuario'] , $agenda_id);
             Painel::aceitaServico($agenda_id, $servico_id, $_SESSION['nCdUsuario']) ;
-            if($sucesso){
+            if($sucesso){ 
                 
                 painel::alert('sucesso' , "O serviço foi aceito com sucesso!");
                 }
@@ -35,7 +35,7 @@ if(isset($_GET['agenda']) && isset($_GET['servico'])){
                 Painel::alert('erro', "Ocorreram erros no processamento, contacte um administrador.");
                 }
         }else{
-               Painel::alert('atencao' , 'Serviço já agendado!');
+                Painel::alert('atencao' , 'Serviço já agendado!');
         }
     }
 }
@@ -102,7 +102,7 @@ $query = "";
     }
 
 $status = 0;
-$pendentes = Painel::retornaAgendaServico($query, 0 ,$_SESSION['nCdUsuario']);
+$pendentes = Painel::retornaAgendaServico($query, $status);
 
 foreach ($pendentes as $value) {    
 $style = "";

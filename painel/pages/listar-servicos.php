@@ -178,7 +178,7 @@ if (isset($_GET['deletar_item'])){
 </div>
 
 </div><!-- boxes -->
-<?php } ?>
+<?php } ?>  
 
 
 </div>

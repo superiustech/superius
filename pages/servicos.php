@@ -1,42 +1,51 @@
-<?php $serv = servicosModel::retornaTodosServicos();
-      $servId = servicosModel::retornaTodosServicosPorId(1);
+
+<div class="landing-box">
+    <div class="img-landing">
+    <img src="uploads/amazonspeaker.png">
+    </div>
+    <div class="content-box">
+    </div>
+    </div>
+
+<div class="center">
+
+<?php
+
+$id = 1;
+$query = "sNmCategoria = 'desenvolvimento'";
+
+$itens = servicosModel::retornaTodosServicos($id, $query);
+foreach($itens as $prod){
+$precoBase = doubleval(Loja::convertMoney($prod['sDsPreco']));
+$precoDividido = Loja::convertMoney(doubleval($precoBase) / 12);
+$precoPix = Loja::convertMoney($precoBase - ($precoBase * 10) / 100);
 ?>
-
-<div class="content-servicos">
-<div class="date-form">
-    <div class="box-topo">
-        <div class="img"></div>
+<div class="boxes boxes-produtos">
+<div class="boxes-topo" style="background-color: rgba(2,2,2,0);" style="width: 90%;" style="height: 90%;">
+    <?php if($prod['sDsImagem'] == ''){?>
+            <i class="fa fa-pencil"></i>
+            <?php }else{?>
+        <a href="<?php INCLUDE_PATH ?>visualizar-produto?id=<?php echo $prod['nCdServico']; ?>"><img src="<?php echo INCLUDE_PATH_PAINEL.'uploads/'.$prod['sDsImagem']?>" alt=""></a>
+            <?php }?>
+</div>
+<div class="boxes-content">
+    <div class="boxes-tipo bproduto"></h5><h2><?php echo $prod['sDsServico'];?></h2></div>
+    <div class="preco">
+    <div class="boxes-tipo desconto"><h3>Preço base</h3><h5>De: R$ <?php echo $prod['sDsPreco'];?></h5></div>
     </div>
-    <div class="opcoes-servicos">
-        <select name="servicos" id="servicos">
-            <option value="" disabled></option>
-            <?php foreach($serv as $servicos){?>
-                    <option value="<?php echo $servicos['nCdServico']; ?>" id="opt"><?php echo $servicos['sDsNome'];?></option>
-               <?php }?>
-        </select>
-        <input type="button" name="selecionar" id="selecionar" onclick="selecionar();" value="Atualizar">
+
+    <div class="parce">
+
+
+    <p>Parcele em até 12x sem juros de <b>R$ <?php echo $precoDividido;  ?></b> sem juros
+        ou até <b>R$ <?php echo $precoPix;?></b> no PIX </p>
+
     </div>
-    <div class="info-produto">
-
-    <label>Descrição: </label><span><?php echo $servId['sDsServico']?></span><br>
-    <label>Preço: R$ </label><span><?php echo $servId['sDsPreco']?></span><br>
-    <label>Categoria: </label><span><?php echo $servId['sNmCategoria']?></span><br>
-
-
+    <div class="box">
+    <a href="<?php INCLUDE_PATH ?>?adicionar-carrinho=<?php echo $prod['nCdServico']; ?>"><p>Adicionar ao carrinho!</p></a>
     </div>
 </div>
-<div class="conclude">
-
 </div>
-</div><!-- content-servicos -->
 
-<script>
-// var selecionarOpt = document.getElementById("selecionar");
-//FAZER AJAX
-
-function selecionar(){
-    var opt = document.getElementById("opt").value;
-    console.log(opt);
-}
-
-</script>
+<?php }?>
+</div>

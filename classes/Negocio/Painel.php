@@ -235,17 +235,27 @@ class Painel
 		$sql = MySql::conectar()->prepare(PainelSQL::retornaTodoFinanceiro($query));
 		$sql->execute(array($bFlStatus));
 		return $sql->fetchAll();	
-		}
+	}
 		public static function retornaTodoFinanceiroSemStatus($query){
 			$sql = MySql::conectar()->prepare(PainelSQL::retornaTodoFinanceiroSemStatus($query));
 			$sql->execute();
 			return $sql->fetchAll();	
 			}
-			public static function retornaAgendaServico($query , $bFlStatus, $usuario_id ){
+			public static function retornaAgendaServico($query , $bFlStatus){
 				$sql = MySql::conectar()->prepare(PainelSQL::retornaAgendaServico($query));
-				$sql->execute(array($bFlStatus,$usuario_id));
+				$sql->execute(array($bFlStatus));
 				return $sql->fetchAll();	
-				}		
+				}
+				public static function retornaAgendaServicoTMP($query , $bFlStatus , $prestador){
+					$sql = MySql::conectar()->prepare(PainelSQL::retornaAgendaServicoTMP($query));
+					$sql->execute(array($bFlStatus , $prestador));
+					return $sql->fetchAll();	
+					}		
+				public static function retornaAgendaServicoId($query , $bFlStatus, $usuario_id){
+					$sql = MySql::conectar()->prepare(PainelSQL::retornaAgendaServicoId($query));
+					$sql->execute(array($bFlStatus, $usuario_id));
+					return $sql->fetchAll();	
+					}	
 				public static function retornaAgendaServicoPorId($agenda_id){
 					$sql = MySql::conectar()->prepare(PainelSQL::retornaAgendaServicoPorId());
 					$sql->execute(array($agenda_id));
@@ -418,15 +428,24 @@ class Painel
 		else
 			return false;
 	}
-	public static function atualizaStatusServico($status, $agenda_id){
-		$sql = MySql::conectar()->prepare(PainelSQL::atualizaStatusServico());
-		if($sql->execute(array($status, $agenda_id)) == true){
+	public static function atualizaStatusServicoAgenda($status, $prestador , $agenda_id ){
+		$sql = MySql::conectar()->prepare(PainelSQL::atualizaStatusServicoAgenda());
+		if($sql->execute(array($status, $prestador ,$agenda_id)) == true){
 			return true;
 		}else{
 			return false;
 		}
 		
 	}	
+	public static function atualizaStatusServicoRealizar($status, $agenda_id ){
+		$sql = MySql::conectar()->prepare(PainelSQL::atualizaStatusServicoRealizar());
+		if($sql->execute(array($status, $agenda_id)) == true){
+			return true;
+		}else{
+			return false;
+		}
+		
+	}
 	public static function deletaAgendarServico($agenda_id){
 		$sql = MySql::conectar()->prepare(PainelSQL::deletaAgendarServico());
 		if($sql->execute(array($agenda_id)) == true){

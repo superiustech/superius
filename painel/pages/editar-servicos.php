@@ -83,7 +83,7 @@ if(isset($_POST['acao'])){
     $sucesso = true;
     $nome = $_POST['nome'];
     $descricao = $_POST['descricao'];
-    $categoria = $_POST['descricao'];
+    $categoria = intval($_POST['categoria']);
     $preco = Painel::formataMoedaBD($_POST['preco']);
     $bFlAtivo = $_POST['bFlAtivo'];
     $descricaoDetalhada = $_POST['descricao-detalhada'];
@@ -141,7 +141,7 @@ if(isset($_POST['acao'])){
     </div>
     <div class="form-group">
         <label>Preço: </label>
-        <input type="text" name="preco" value="<?php echo $infoProduto['sDsNome'] ?? ''?>">
+        <input type="text" name="preco" value="<?php echo $infoProduto['sDsPreco'] ?? ''?>">
     </div>
     <div class="form-group">
         <label>Categoria: </label>

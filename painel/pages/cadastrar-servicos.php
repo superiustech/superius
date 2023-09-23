@@ -15,7 +15,7 @@ if(isset($_POST['acao'])){
     $sucesso = true;
     $nome = $_POST['nome'];
     $descricao = $_POST['descricao'];
-    $categoria = $_POST['descricao'];
+    $categoria = intval($_POST['categoria']);
     $preco = Painel::formataMoedaBD($_POST['preco']);
     $bFlAtivo = $_POST['bFlAtivo'];
     $descricaoDetalhada = $_POST['descricao-detalhada'];

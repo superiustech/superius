@@ -134,14 +134,31 @@ class PainelSQL{
         return "SELECT * FROM CONTROLE_SERVICOS_AGENDA CSA
         LEFT JOIN CLIENTES CL ON CL.nCdCliente = CSA.nCdCliente
         LEFT JOIN CONTROLE_SERVICOS CSE ON CSA.nCdServico = CSE.nCdServico
+        WHERE CSA.sDsStatus = ?
+        ORDER BY CSA.tDtServico ASC;";
+    }
+    public static function  retornaAgendaServicoTMP($query){
+        return "SELECT * FROM CONTROLE_SERVICOS_AGENDA CSA
+        LEFT JOIN CLIENTES CL ON CL.nCdCliente = CSA.nCdCliente
+        LEFT JOIN CONTROLE_SERVICOS CSE ON CSA.nCdServico = CSE.nCdServico
+        WHERE CSA.sDsStatus = ? AND CSA.nCdPrestador = ?
+        ORDER BY CSA.tDtServico ASC;";
+    }
+    public static function  retornaAgendaServicoId($query){
+        return "SELECT * FROM CONTROLE_SERVICOS_AGENDA CSA
+        LEFT JOIN CLIENTES CL ON CL.nCdCliente = CSA.nCdCliente
+        LEFT JOIN CONTROLE_SERVICOS CSE ON CSA.nCdServico = CSE.nCdServico
         WHERE CSA.sDsStatus = ? AND CSA.nCdPrestador = ?
         ORDER BY CSA.tDtServico ASC;";
     }
     public static function verificaAgenda(){
         return "SELECT * FROM CONTROLE_SERVICOS_REALIZAR WHERE nCdAgendaServico = ?";
     }
-    public static function atualizaStatusServico(){
-        return "UPDATE CONTROLE_SERVICOS_AGENDA SET sDsStatus = ? WHERE nCdAgendaServico = ?" ;
+    public static function atualizaStatusServicoAgenda(){
+        return "UPDATE CONTROLE_SERVICOS_AGENDA SET sDsStatus = ? , nCdPrestador = ? WHERE nCdAgendaServico = ?" ;
+    }
+    public static function atualizaStatusServicoRealizar(){
+        return "UPDATE CONTROLE_SERVICOS_Realizar SET sDsStatus = ? WHERE nCdAgendaServico = ?" ;
     }
     public static function deletaAgendarServico(){
         return "DELETE FROM CONTROLE_SERVICOS_AGENDA WHERE nCdAgendaServico = ?" ;

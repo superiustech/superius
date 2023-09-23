@@ -69,37 +69,27 @@ td{
 
 
 <?php 
-$query = "";
-if(isset($_POST['acao']) && $_POST['acao'] == "Buscar"){
-    $busca = $_POST['busca'];
-    $query = "WHERE sNmCliente LIKE '%nogueira%'";
 
-}
-
-$pendentes = Painel::retornaTodoFinanceiroSemStatus($query);
-
-?>
-
-<?php 
+$query="";
 
 if ($nome == "Pendentes")
-    $status = 0;
-else
     $status = 1;
+else
+    $status = 2;
     
-$pendentes = Painel::retornaTodoFinanceiro($status,$query);
+$pendentes = Painel::retornaAgendaServicoTMP($query, $status , $_SESSION['nCdUsuario']);
 foreach ($pendentes as $value) {    
-if(strtotime(date('Y-m-d')) >= strtotime($value['tDtVencimento'])){
+if(strtotime(date('Y-m-d')) >= strtotime($value['tDtServico'])){
     $style = 'style="background-color: #ff2b2b;"';
 } ?>
 
 <div class="wrapper">
     <table>
         <tr>
-            <td> <?php echo $value['sNmControle']; ?></td>
-            <td><?php echo $value['sDsApelido']; ?></td>
-            <td><?php echo $value['sDsValor']; ?></td>
-            <td><?php echo date('d/m/Y',strtotime($value['tDtVencimento'])); ?></td>
+            <td> <?php echo $value['sDsNome']; ?></td>
+            <td><?php echo $value['sNmCliente']; ?></td>
+            <td><?php echo $value['sDsPreco']; ?></td>
+            <td><?php echo date('d/m/Y',strtotime($value['tDtServico'])); ?></td>
          </tr>
     </table>
 </div>
