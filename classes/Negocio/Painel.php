@@ -7,12 +7,17 @@ class Painel
 	public static function logado(){
 		return isset($_SESSION['login']) ? true : false;
 	}
-
+	public static function logadoPainel(){
+		return isset($_SESSION['loginPainel']) ? true : false;
+	}
 	public static function logout(){
 		session_destroy();
 	}
 	public static function redirecionar(){
 		header('Location: '.INCLUDE_PATH_PAINEL);
+	}
+	public static function redirecionarSite(){
+		header('Location: '.INCLUDE_PATH);
 	}
 	public static function redirecionarInicio(){
 		header('Location: '.INCLUDE_PATH);
@@ -343,6 +348,7 @@ class Painel
 		if ($sql->execute(array($produto_id)) == true)
 			return $sql->fetchAll();
 	}
+	
 	public static function retornaImagemServico($produto_id){
 		$sql = MySql::conectar()->prepare(PainelSQL::retornaImagemServico());
 		if ($sql->execute(array($produto_id)) == true)
@@ -454,6 +460,35 @@ class Painel
 			return false;
 		}
 		
+	}
+	public static function retornaContato($query){
+		$sql = MySql::conectar()->prepare(PainelSQL::retornaContato($query));
+		$sql->execute();
+		return $sql->fetchAll();	
+	}
+	public static function respondeChamado($codigo_chamado){
+		$sql = MySql::conectar()->prepare(PainelSQL::respondeChamado());
+		if($sql->execute(array($codigo_chamado)) == true){
+			return true;
+		}else{
+			return false;
+		}
+	}
+	public static function insereServico($servico , $cliente,$data){
+		$sql = MySql::conectar()->prepare(PainelSQL::insereServico());
+		if($sql->execute(array($servico , $cliente , $data )) == true){
+			return true;
+		}else{
+			return false;
+		}
+	}
+	public static function deletaChamado($codigo_chamado){
+		$sql = MySql::conectar()->prepare(PainelSQL::deletaChamado());
+		if($sql->execute(array($codigo_chamado)) == true){
+			return true;
+		}else{
+			return false;
+		}
 	}
 }
 

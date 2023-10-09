@@ -20,11 +20,15 @@
         if ($bFlExiste == true) {
              // logamos com sucesso
             
+        $sql = MySql::conectar()->prepare(PainelSQL::retornaCliente($nome, $senha));
+        $sql->execute(array($nome, $senha));
+        $infoUser = $sql->fetch();
+        if ($sql->rowCount() == 1) {
             $_SESSION['login'] = true;
             $_SESSION['nome'] = $nome;
             $_SESSION['senha'] = $senha;
-            echo "TESTEEEEEEEEEEE";
-
+            $_SESSION['codigo'] = $infoUser['nCdCliente']; 
+             }
             // Redireciona 
             
             header('Location: ' . INCLUDE_PATH . 'home');

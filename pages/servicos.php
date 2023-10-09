@@ -42,7 +42,7 @@ $precoPix = Loja::convertMoney($precoBase - ($precoBase * 10) / 100);
 
     </div>
     <div class="box">
-    <a href="<?php INCLUDE_PATH ?>?adicionar-carrinho=<?php echo $prod['nCdServico']; ?>"><p>Adicionar ao carrinho!</p></a>
+    <a href="<?php INCLUDE_PATH ?>visualizar-servico?servico=<?php echo $prod['nCdServico']; ?>"><p>Adicionar ao carrinho!</p></a>
     </div>
 </div>
 </div>

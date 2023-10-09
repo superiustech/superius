@@ -232,7 +232,22 @@ img{
   .boxes-tipo h2{
     text-align: center;
   }
-
+  .box-alert{
+    width: 100%;
+    text-align: center;
+    padding: 10px;
+    color: white;
+  
+  }
+  .sucesso{
+    background-color: rgb(97, 227, 97);
+  }
+  .erro{
+    background-color: rgb(246, 66, 66);
+  }
+  .atencao{
+    background-color: rgb(255, 174, 45);
+  }
   .box-adicionar a , .box a{
     text-decoration: none;
     font-weight: bold;
@@ -266,6 +281,12 @@ img{
     color: rgb(255, 255, 255);
   }
 
+  .form-group input{
+    width: 100%;
+    padding: 10px;
+    border: 1;
+    outline: 0;
+  }
 
   /* LANDING PAGE */
 
@@ -300,8 +321,12 @@ padding: 20px;
     width: 100%;
 }
 #img1{
-    width: 200px;
-    height: 200px;
+    width: 400px;
+    height: 400px;
+}
+.img-box h1{
+  color: white;
+  text-align: center;
 }
 .content-box{
 
@@ -394,7 +419,11 @@ border-radius: 5px;
    .content-box .form-box .input-box input[type=submit]:hover {
     background: #3286ca;
     }
-
+.input-box textarea{
+  min-width: 100%;
+  max-width: 100%;
+  max-height: 200px;
+}
     .content-box .form-box  .remember{
     margin-bottom: 20px;
     color: #32324f;

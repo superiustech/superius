@@ -15,7 +15,7 @@
         <a href="<?php echo INCLUDE_PATH ?>">Home</a>
         <a href="<?php echo INCLUDE_PATH ?>home">Loja</a>
         <a href="<?php INCLUDE_PATH ?>servicos">Serviços</a>
-        <a href="<?php INCLUDE_PATH ?>">Contato</a>
+        <a href="<?php INCLUDE_PATH ?>contato">Contato</a>
     </nav>
     <div class="end-header">
       <i class="fa fa-user"><a href="<?php $_SESSION['nome'] ?? INCLUDE_PATH ?>login"><?php echo $_SESSION['nome'] ?? 'usuario';?></a></i>

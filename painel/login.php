@@ -23,8 +23,8 @@
             $cargo = Painel::pegaCargo($nome, $senha);
             $imagem = Painel::pegaAvatar($nome);
             $infoUser = $sql->fetch();
-            $_SESSION['nCdUsuario'] = $infoUser['nCdUsuario'];
-            $_SESSION['login'] = true;
+            $_SESSION['nCdUsuario'] = $infoUser['nCdUsuarioAdmin'];
+            $_SESSION['loginPainel'] = true;
             $_SESSION['adminName'] = $nome;
             $_SESSION['adminPassword'] = $senha;
             $_SESSION['adminName'] = $infoUser['nNmPessoal'];

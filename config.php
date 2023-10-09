@@ -33,7 +33,7 @@ include('classes/Persistencia/LojaSQL.php');
 include('classes/Negocio/Loja.php');
 include('classes/models/homeModel.php');
 include('classes/models/servicosModel.php');
-
+include('classes/models/contatoModel.php');
 
 //FUNÇÕES 
 

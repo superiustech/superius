@@ -28,7 +28,7 @@ include('../../classes/Persistencia/MySqlSQL.php');
 include('../../classes/Persistencia/PainelSQL.php');
 
 
-if(Painel::logado() == false)
+if(Painel::logadoPainel() == false)
 {
     die('Você não está logado!');
 

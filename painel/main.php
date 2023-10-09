@@ -52,6 +52,8 @@ if (!isset($_SESSION['adminImg'])) {
         <h2>Gestão de clientes </h2>
         <a <?php selecionadoMenu('cadastrar-clientes'); ?> href="<?php INCLUDE_PATH_PAINEL ?>cadastrar-clientes">Cadastrar Clientes</a>
         <a <?php selecionadoMenu('gerenciar-clientes'); ?> href="<?php INCLUDE_PATH_PAINEL ?>gerenciar-clientes">Gerenciar Clientes</a>
+        <a <?php selecionadoMenu('visualizar-chamados'); ?> href="<?php INCLUDE_PATH_PAINEL ?>visualizar-chamados">Visualizar Chamados</a>
+
         <!-- Controle Estoque  -->
 
         <h2>Controle Financeiro</h2>
@@ -118,7 +120,7 @@ if (!isset($_SESSION['adminImg'])) {
 
 <?php 
 
-     if(Painel::logado() == true)
+     if(Painel::logadoPainel() == true)
      {
          
      }
